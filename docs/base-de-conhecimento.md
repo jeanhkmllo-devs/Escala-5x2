@@ -174,3 +174,57 @@ Fontes desta seção:
 - [ABET: estudo da década de 80 sobre a redução da jornada](https://abet-trabalho.org.br/estudo-da-decada-de-80-mostra-que-reducao-da-jornada-nao-causou-desemprego/)
 - [Poder360: reconfiguração da jornada de trabalho no Brasil (PDF)](https://static.poder360.com.br/2026/04/Diagramacao-Completo_Reducao-da-jornada-de-trabalho.pdf)
 - [Guia Trabalhista: horas extras](https://www.guiatrabalhista.com.br/obras/horas-extras.htm) e [Jus: horas extras](https://jus.com.br/artigos/11288/horas-extras-aspectos-relevantes-para-pedir-ou-para-deferir-este-direito-trabalhista)
+
+## 11. Referências de mercado
+
+### 11.1 Checklist da Metadados (gestaorh.metadados.com.br)
+
+Material de captação de uma empresa de software de RH e folha, visto em anúncio no Instagram. Usado só como referência de formato. Não copiar o texto.
+
+- **Formato:** 7 áreas com 4 perguntas cada (28 itens), marcadas como caixas de seleção. O resultado conta os itens pendentes em três faixas (0 a 5, 6 a 10, mais de 10). A chamada final leva para um e-book.
+- **Áreas cobertas:** escalas de trabalho, controle de ponto, banco de horas, horas extras, integração com a folha, conformidade trabalhista e processos.
+- **Pontos fortes:** autodiagnóstico rápido, resultado em faixas e próximo passo claro.
+- **Pontos fracos:**
+  - É genérico sobre jornada. Não cita a EC 141, os limites de 42 h e 40 h, as 2 folgas nem datas.
+  - Mistura perguntas em que "sim" é bom ("o ponto atende à operação?") com perguntas em que "sim" é ruim ("há excesso recorrente de horas extras?"). Isso confunde a contagem de pendências.
+
+### 11.2 Rascunho de checklist próprio: prontidão para a EC 141
+
+Todas as perguntas estão escritas para que "sim" signifique "pronto". O resultado é a contagem de "não".
+
+**Jornada e escalas**
+1. Sabemos a jornada semanal de cada pessoa hoje?
+2. Todas as escalas cabem em 42 h por semana até dez/2026?
+3. Temos um plano para chegar a 40 h até dez/2027?
+4. Todo mundo terá 2 dias de descanso por semana a partir da 1ª etapa?
+5. Nenhuma jornada diária passa de 8 h sem acordo de compensação ou convenção?
+6. O intervalo de almoço fica entre 1 h e 2 h, ou há acordo escrito para outro valor?
+7. Há pelo menos 11 h de descanso entre duas jornadas em todas as escalas?
+
+**Quadro e cobertura**
+8. Calculamos quantas pessoas cada área precisa com 42 h e com 40 h?
+9. Sabemos como cobrir sábados e domingos sem depender de hora extra habitual?
+10. No comércio, cada pessoa folga pelo menos 1 domingo a cada 3 semanas?
+
+**Salário e custo**
+11. Os salários serão mantidos com a jornada menor (EC 141, art. 2º)?
+12. A folha está pronta para o novo divisor do salário-hora (210 com 42 h, 200 com 40 h)?
+13. Estimamos o custo da mudança (pessoas a mais, hora extra, adicional)?
+
+**Acordos e exceções**
+14. Revisamos a convenção coletiva da categoria? Cláusulas incompatíveis perdem efeito 2 meses após a publicação (EC 141, art. 3º).
+15. Sabemos se algum cargo se enquadra na exceção de diploma superior com remuneração de 2,5 vezes o teto do INSS (art. 8º)?
+16. Se temos contratos com o poder público, já avaliamos o aditamento (art. 9º)?
+17. Se somos ME, MEI ou EPP, acompanhamos a lei complementar do art. 5º?
+
+**Ponto, banco de horas e horas extras**
+18. O controle de ponto registra as novas escalas sem ajuste manual?
+19. O banco de horas está formalizado e com saldos em dia?
+20. Hora extra é eventual, e não parte da rotina?
+
+**Pessoas e comunicação**
+21. A equipe foi informada sobre as mudanças e as datas?
+22. Mudanças de horário foram combinadas por escrito com cada pessoa (CLT, art. 468)?
+23. Gestores sabem montar e conferir a nova escala?
+
+Faixas de resultado (rascunho): 0 a 3 "não" = pronto para a 1ª etapa; 4 a 9 = ajustes importantes; 10 ou mais = começar já, a 1ª etapa é em dez/2026.
