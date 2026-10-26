@@ -116,3 +116,61 @@ Ainda não há dados verificados sobre impacto. Esta é a lista de pontos a inve
 10. Acompanhar a regulamentação de cargas horárias de setores específicos, citada pelo Senado.
 11. Ler o PDF completo do Ipea (NT 123) para extrair números de custo por setor e cenário, que não aparecem na página.
 12. Ler a BBC e o g1, que bloquearam a leitura, e conferir as datas de transição que eles citam.
+
+## 9. Casos práticos
+
+Análises de leitura das normas. Não há jurisprudência sobre a EC 141 ainda. Confirmar com advogado trabalhista.
+
+### 9.1 Segunda a sexta, das 8h às 18h, com 2 h de almoço
+
+| Ponto | Conta | Regra | Resultado |
+|---|---|---|---|
+| Jornada diária | 10 h − 2 h = 8 h | Até 8 h por dia (Constituição, art. 7º, XIII) | Dentro |
+| Jornada semanal | 8 h × 5 = 40 h | 42 h na 1ª etapa e 40 h na 2ª (EC 141, art. 6º) | Dentro das duas etapas |
+| Intervalo de almoço | 2 h | Mínimo 1 h e máximo 2 h para jornada acima de 6 h, salvo acordo escrito ou convenção (CLT, art. 71) | Dentro, no limite máximo |
+| Descanso entre jornadas | 18h às 8h = 14 h | Mínimo 11 h (CLT, art. 66) | Dentro |
+| Folgas | Sábado e domingo | 2 dias, um preferencialmente no domingo (EC 141, art. 7º, XV) | Dentro |
+
+Cuidados:
+
+- **Mudança de contrato:** só vale com concordância do empregado e sem prejuízo para ele (CLT, art. 468). Aumentar o almoço de 1 h para 2 h faz a pessoa ficar mais tempo fora de casa. Formalizar por escrito.
+- **Salário:** não pode ser reduzido por causa da jornada menor (EC 141, art. 2º).
+- **Salário-hora:** o divisor do mensalista acompanha a jornada (44 h → 220; 42 h → 210; 40 h → 200). Com 40 h, a hora fica cerca de 10% mais cara que com 44 h, e a hora extra também.
+
+### 9.2 Sábado trabalhado como hora extra, em vez de folga
+
+Com escala de segunda a sexta, o sábado passa a ser um dos 2 dias de descanso. Usar o sábado toda semana como hora extra **não é um caminho seguro**:
+
+- O descanso de 2 dias é direito constitucional e não pode ser trocado por pagamento em acordo individual.
+- Hora extra tem limite de 2 h por dia (CLT, art. 59). Um sábado inteiro passa disso.
+- Trabalho em dia de descanso sem folga compensatória costuma ser pago em dobro (Lei 605/1949, art. 9º; Súmula 146 do TST, para domingos e feriados). Aplicar isso ao segundo dia de descanso é uma leitura por analogia. **Pendente.**
+- Hora extra habitual descaracteriza o acordo de compensação (Súmula 85 do TST) e passa a integrar a remuneração.
+
+Hora extra no sábado continua possível de forma eventual, com folga compensatória ou pagamento em dobro.
+
+Caminhos para manter o sábado aberto sem contratar:
+
+1. **Folgas em rodízio:** a 5x2 não exige folga no sábado. Parte da equipe trabalha de terça a sábado e folga domingo e segunda, por exemplo.
+2. **Regime compensatório por convenção ou acordo coletivo:** a EC 141 (art. 7º, § 2º) permite, em caráter excepcional, garantir 2 dias de descanso na média do mês, com um dia gozado em até uma semana.
+3. **Na transição:** convenção ou acordo coletivo pode ampliar a jornada diária para distribuir as 42 h (EC 141, art. 7º transitório).
+
+## 10. Histórico: de 48 h para 44 h em 1988
+
+- **Antes de 1988:** a CLT fixava 8 h por dia e 6 dias por semana, ou 48 h semanais. O adicional de hora extra era menor. As fontes citam 20% ou 25%.
+- **Constituição de 1988 (art. 7º, XIII):** manteve 8 h por dia e reduziu para 44 h por semana, com compensação e redução por acordo ou convenção coletiva. Valeu a partir da promulgação, em 05/10/1988, sem fase de transição.
+- **Outras mudanças de 1988:** hora extra de no mínimo 50% (art. 7º, XVI) e divisor do salário-hora de 240 para 220.
+- **Como as empresas se adaptaram:** duas formas viraram padrão.
+  - **Compensação do sábado:** 8h48 de segunda a sexta (5 × 8h48 = 44 h), com acordo de compensação. Validade regulada pela Súmula 85 do TST.
+  - **6x1:** 7h20 por dia em 6 dias (6 × 7h20 = 44 h).
+- **Efeitos medidos:** Gonzaga, Menezes-Filho e Camargo (Revista Brasileira de Economia, v. 57, n. 2, 2003) compararam trabalhadores com 45 a 48 h com quem já trabalhava até 44 h.
+  - Resultados: a jornada efetiva caiu e o salário por hora subiu.
+  - Os resumos divergem sobre o efeito no emprego: um diz que não houve aumento de desemprego, outro diz que aumentou a passagem do grupo afetado para fora do emprego. **Pendente:** ler o artigo completo.
+  - Um levantamento citado pelo Poder360 indica que cerca de 60% de quem trabalhava 45 a 48 h em 1988 passou para 40 a 44 h em 1989.
+- **Diferença para agora:** em 1988 caiu só a jornada semanal, e o sábado podia ser compensado na semana. Agora a EC 141 também garante 2 dias de descanso. A saída de 1988 de compensar o sábado em dias mais longos continua possível, mas a de transformar o sábado em hora extra fica limitada.
+
+Fontes desta seção:
+
+- [Gonzaga, Menezes-Filho e Camargo (2003), SciELO](http://www.scielo.br/j/rbe/a/VcHZsYRpkCyNxRSxnMP7WWv/?lang=pt) e [PDF na FGV](https://periodicos.fgv.br/rbe/article/download/843/594/1776)
+- [ABET: estudo da década de 80 sobre a redução da jornada](https://abet-trabalho.org.br/estudo-da-decada-de-80-mostra-que-reducao-da-jornada-nao-causou-desemprego/)
+- [Poder360: reconfiguração da jornada de trabalho no Brasil (PDF)](https://static.poder360.com.br/2026/04/Diagramacao-Completo_Reducao-da-jornada-de-trabalho.pdf)
+- [Guia Trabalhista: horas extras](https://www.guiatrabalhista.com.br/obras/horas-extras.htm) e [Jus: horas extras](https://jus.com.br/artigos/11288/horas-extras-aspectos-relevantes-para-pedir-ou-para-deferir-este-direito-trabalhista)
