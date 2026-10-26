@@ -79,7 +79,7 @@
     font: inherit; padding: 9px 10px; width: 100%;
     border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text);
   }
-  button.action {
+  .action {
     font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer;
     border: 1px solid var(--accent); background: var(--accent); color: #fff;
   }
@@ -347,6 +347,90 @@
     <p class="small">Marque o que já fez. Fica salvo só neste navegador.</p>
   </section>
 
+  <!-- ===== Kit (empresário) ===== -->
+  <section class="card hidden" data-only="employer" id="kit-cta">
+    <h2>Kit Escala 5x2 para empresas</h2>
+    <p>Ferramenta completa para montar a escala do mês, sem precisar começar do zero:</p>
+    <ul>
+      <li>Calculadora de quadro de pessoal com 44 h, 42 h e 40 h, com custo mensal estimado.</li>
+      <li>Gerador de rodízio com 2 folgas por semana, cobertura mínima por dia e regra de domingos do comércio.</li>
+      <li>Conferência de jornada semanal, jornada diária e intervalo de 11 h entre jornadas.</li>
+      <li>Planilha para Excel ou Google Planilhas e versão para imprimir.</li>
+      <li>Atualizações quando a regra mudar, até a etapa de 40 h.</li>
+    </ul>
+    <p><a class="action" id="kit-link" href="#" style="display:inline-block; text-decoration:none">Quero o kit por R$ 19,90</a></p>
+    <p class="small">Funciona no navegador, sem instalar nada. Você tem 7 dias para desistir da compra.</p>
+  </section>
+
+  <!-- ===== Captação de leads ===== -->
+  <section class="card" id="avisos">
+    <h2>Receba um aviso quando a regra mudar</h2>
+    <p class="small">Ainda faltam o texto oficial conferido, a lei para micro e pequenas empresas e a regulamentação por setor. Avisamos quando cada uma sair.</p>
+    <form id="lead-form" novalidate>
+      <div class="grid">
+        <div>
+          <label for="lead-name">Nome</label>
+          <input type="text" id="lead-name" name="nome" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="lead-email">E-mail</label>
+          <input type="email" id="lead-email" name="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="lead-phone">WhatsApp (opcional)</label>
+          <input type="tel" id="lead-phone" name="whatsapp" autocomplete="tel" placeholder="(48) 99999-9999">
+        </div>
+        <div>
+          <label for="lead-role">Você é</label>
+          <select id="lead-role" name="perfil" required>
+            <option value="">Escolha</option>
+            <option>Trabalhador</option>
+            <option>Dono ou sócio de empresa</option>
+            <option>RH ou gestão de pessoas</option>
+            <option>Contador</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-company">Empresa</label>
+          <input type="text" id="lead-company" name="empresa" autocomplete="organization">
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-size">Colaboradores</label>
+          <select id="lead-size" name="colaboradores">
+            <option value="">Escolha</option>
+            <option>Até 29</option>
+            <option>30 a 100</option>
+            <option>101 a 300</option>
+            <option>Mais de 300</option>
+          </select>
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-sector">Setor</label>
+          <select id="lead-sector" name="setor">
+            <option value="">Escolha</option>
+            <option>Comércio</option>
+            <option>Serviços</option>
+            <option>Indústria</option>
+            <option>Saúde</option>
+            <option>Bares e restaurantes</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <label class="check" for="lead-consent">
+        <input type="checkbox" id="lead-consent" name="consentimento_avisos" value="sim" required>
+        <span>Quero receber avisos sobre mudanças na escala 5x2 e concordo com a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</span>
+      </label>
+      <label class="check" for="lead-marketing">
+        <input type="checkbox" id="lead-marketing" name="consentimento_peoplegt" value="sim">
+        <span>Também aceito receber conteúdos e ofertas da PeopleGT (opcional).</span>
+      </label>
+      <div style="margin-top:10px"><button type="submit" class="action">Quero receber os avisos</button></div>
+      <p id="lead-status" class="small" style="margin-top:10px" aria-live="polite"></p>
+    </form>
+  </section>
+
   <!-- ===== Glossário ===== -->
   <section class="card" id="glossario">
     <h2>Palavras difíceis</h2>
@@ -376,10 +460,30 @@
     <p class="small">Dados de reportagens ainda precisam ser conferidos no texto oficial da emenda.</p>
   </section>
 
+  <footer class="small" style="padding:8px 0 24px">
+    Realização: <a href="https://peoplegt.com.br/?utm_source=escala5x2&amp;utm_medium=site&amp;utm_campaign=escala5x2">PeopleGT</a>
+    · <a href="politica-de-privacidade.html">Política de Privacidade</a>
+    · <a href="leigo.html">Versão simples</a>
+  </footer>
+
 </main>
 
 <script>
 (function () {
+  // ----- configuração (preencher antes de publicar) -----
+  // LEAD_ENDPOINT: URL que recebe o formulário e cria o lead no Pipedrive
+  // (webhook do Make ou Zapier, ou um endpoint da PeopleGT). Nunca coloque o token da API do Pipedrive aqui.
+  var LEAD_ENDPOINT = "";
+  // HOTMART_URL: link do checkout do kit na Hotmart. Vazio esconde a chamada do kit.
+  var HOTMART_URL = "";
+
+  var kitCta = document.getElementById("kit-cta");
+  if (!HOTMART_URL) {
+    kitCta.remove();
+  } else {
+    document.getElementById("kit-link").href = HOTMART_URL;
+  }
+
   var MODE_KEY = "escala5x2-mode";
   var CHECK_KEY = "escala5x2-checklist";
   var TARGET = new Date(2026, 11, 16);
@@ -551,6 +655,48 @@
     label.appendChild(box);
     label.appendChild(span);
     list.appendChild(label);
+  });
+
+  // ----- formulário de leads -----
+  var form = document.getElementById("lead-form");
+  var status = document.getElementById("lead-status");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("lead-name").value.trim();
+    var email = document.getElementById("lead-email").value.trim();
+    var role = document.getElementById("lead-role").value;
+    var consent = document.getElementById("lead-consent").checked;
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !role || !consent) {
+      status.innerHTML = '<span class="bad">Preencha nome, e-mail válido e perfil, e marque a autorização para receber os avisos.</span>';
+      return;
+    }
+    if (!LEAD_ENDPOINT) {
+      status.innerHTML = '<span class="bad">O cadastro ainda não está disponível. Tente novamente em breve.</span>';
+      return;
+    }
+
+    var data = new URLSearchParams(new FormData(form));
+    data.set("origem", "site-escala-5x2");
+    data.set("modo_pagina", document.body.getAttribute("data-mode") === "employer" ? "empresario" : "trabalhador");
+    data.set("data_consentimento", new Date().toISOString());
+    var params = new URLSearchParams(window.location.search);
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (params.get(k)) data.set(k, params.get(k));
+    });
+
+    var button = form.querySelector("button[type=submit]");
+    button.disabled = true;
+    status.textContent = "Enviando...";
+    // no-cors: o webhook não precisa liberar CORS, mas a resposta não pode ser lida.
+    fetch(LEAD_ENDPOINT, { method: "POST", mode: "no-cors", body: data })
+      .then(function () {
+        form.reset();
+        status.innerHTML = '<span class="ok">Pronto! Você vai receber um aviso quando a regra mudar.</span>';
+      })
+      .catch(function () {
+        status.innerHTML = '<span class="bad">Não foi possível enviar agora. Verifique sua conexão e tente de novo.</span>';
+      })
+      .then(function () { button.disabled = false; });
   });
 })();
 </script>
