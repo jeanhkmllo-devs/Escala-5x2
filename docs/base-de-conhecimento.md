@@ -95,6 +95,11 @@ Ainda não há dados verificados sobre impacto. Esta é a lista de pontos a inve
 - [Planalto: emendas da Constituição](https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/): texto oficial, **a conferir**.
 - [Planalto: CLT](https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm).
 - [Planalto: Lei 11.603/2007](https://planalto.gov.br/ccivil_03/_Ato2007-2010/2007/Lei/L11603.htm).
+- [Senado: Senado aprova fim da escala 6x1 (14/10/2026)](https://www12.senado.leg.br/noticias/materias/2026/10/14/senado-aprova-fim-da-escala-6x1-1): tramitação e votação. A PEC aparece como 221/2019. Votação de 75 a 1 nos dois turnos. A notícia diz que cargas horárias de setores específicos deverão ser regulamentadas pelo Congresso. Não trata de terceirizados, ME/EPP nem diploma de nível superior. Trecho de legenda e manchete fala em 42 h após dois meses e em 15/12, enquanto o corpo do texto fala em 40 h. Divergência não explicada.
+- [Planalto: Congresso promulga emenda que aprova o fim da escala 6x1 (16/10/2026)](https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2026/10/congresso-promulga-emenda-a-constituicao-que-aprova-o-fim-da-escala-6x1): fonte oficial, mas **não foi possível ler**. A página devolveu um teste de CAPTCHA.
+- [Ipea: Nota Técnica Disoc nº 123, Mudanças na jornada e na escala de trabalho (fev/2026)](https://repositorio.ipea.gov.br/entities/publication/2b1afaf5-27b2-4e47-83d2-c43c657b6c91): estudo com microdados da RAIS 2023, cenários de 40 h e 36 h, salário nominal mantido. Achados: aumento médio do custo da hora, impacto heterogêneo entre setores e discussão sobre absorção dos custos. Não traz números de custo por setor na página, nem estimativas de emprego ou informalidade. PDF direto: https://repositorio.ipea.gov.br/bitstreams/7083c3f2-81ee-48e6-a525-c9fe4b56d5e7/download. Publicação preliminar.
+- Não foi possível ler: [BBC Brasil](https://www.bbc.com/portuguese/articles/cxvgd8qe92vlo) e [g1](https://g1.globo.com/trabalho-e-carreira/noticia/2026/10/16/transicao-fim-da-escala-6x1.ghtml). Os dois sites bloquearam a leitura.
+- Arquivo local `NT_Disoc_123_Mudancas_na_jornada_e_na_escala_de_trabalho.pdf`: estava no computador do usuário e não chegou ao ambiente. Pelo nome, parece ser a mesma Nota Técnica 123 do link do Ipea, mas não foi lido. Só o PDF do link do Ipea foi consultado.
 - Página de venda comercial (comportamente.site): usada só para conferir afirmações. Não tem fonte oficial e não serve como referência normativa.
 
 ## 8. Pendências
@@ -106,3 +111,8 @@ Ainda não há dados verificados sobre impacto. Esta é a lista de pontos a inve
 5. Aguardar a lei sobre regimes diferenciados (art. 7º, § 3º).
 6. Verificar a regra para 12x36 quando a jornada cair para 40 h.
 7. Confirmar o valor de R$ 21.188,87 (art. 8º) quando o teto do INSS mudar.
+8. Ler o texto oficial no Planalto. A página de notícia do Planalto não abriu (CAPTCHA).
+9. Resolver a divergência entre 40 h e 42 h na notícia do Senado, e confirmar a data de 15/12 ou 16/12.
+10. Acompanhar a regulamentação de cargas horárias de setores específicos, citada pelo Senado.
+11. Ler o PDF completo do Ipea (NT 123) para extrair números de custo por setor e cenário, que não aparecem na página.
+12. Ler a BBC e o g1, que bloquearam a leitura, e conferir as datas de transição que eles citam.
