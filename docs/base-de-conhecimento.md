@@ -228,3 +228,25 @@ Todas as perguntas estão escritas para que "sim" signifique "pronto". O resulta
 23. Gestores sabem montar e conferir a nova escala?
 
 Faixas de resultado (rascunho): 0 a 3 "não" = pronto para a 1ª etapa; 4 a 9 = ajustes importantes; 10 ou mais = começar já, a 1ª etapa é em dez/2026.
+
+### 11.3 "Mapa Fácil da Nova Jornada de Trabalho" (nexoeducacaodigital)
+
+Anúncio em stories do Instagram, visto em 26/10/2026. Material pago com fichas ilustradas para imprimir, voltado ao Departamento Pessoal. Usado só como referência de formato. Não copiar.
+
+- **Formato:** fichas de uma página, numeradas por categoria, com identidade visual única (cabeçalho escuro, título grande, ícones, exemplos de semana dia a dia).
+- **Temas vistos no vídeo:**
+  - linha do tempo da transição (regra atual, promulgação, 60 dias, 12 meses);
+  - mudanças na escala 6x1;
+  - jornadas, horários, folgas e descansos (44, 42 e 40 h);
+  - conferência matemática de 44, 42 e 40 h;
+  - exemplo de semana em 6x1;
+  - modelos visuais de jornada, numerados;
+  - situação da PEC (aprovação, promulgação e vigência);
+  - quadro jurídico do que mudou e do que ainda depende;
+  - intervalo intrajornada.
+- **Problemas encontrados nos quadros do vídeo:**
+  - **"Modelo visual 01: escala 6x1"** mostra 8 h por dia em 6 dias, ou 48 h semanais, acima do limite atual de 44 h. Não deu para ver se a ficha aponta isso como irregular.
+  - **"Modelo visual 04: jornada de 42 h"** mostra 8 h de segunda a sexta e 2 h no sábado, com folga só no domingo. Cumpre as 42 h, mas tem 1 folga por semana. A EC 141 exige 2 dias de descanso a partir dos mesmos 2 meses (art. 7º, XV, e art. 10). Esse modelo só se sustentaria com regime compensatório em convenção ou acordo coletivo (art. 7º, § 2º).
+- **Lição para o projeto:**
+  - O formato de ficha para imprimir é o que o mercado está vendendo.
+  - Nosso diferencial é conferir as regras, incluindo as 2 folgas, que é exatamente onde esse material escorrega.
