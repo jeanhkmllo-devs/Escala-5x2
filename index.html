@@ -192,9 +192,32 @@
     </div>
   </section>
 
-  <!-- ===== 4. Calculadora ===== -->
+  <!-- ===== 4. Base de conhecimento ===== -->
+  <section class="card" id="base">
+    <h2>4. Base de conhecimento</h2>
+    <p class="small">Resumo dos pontos principais, com o nível de confiança de cada um. O detalhe fica em <a href="docs/base-de-conhecimento.md">docs/base-de-conhecimento.md</a>.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Tema</th><th>Informação</th><th>Confiança</th></tr></thead>
+        <tbody>
+          <tr><td>Art. 2º</td><td>Redução de jornada e aumento de descanso valem para contratos em vigor, sem redução salarial.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 6º, I</td><td>Até 42 h semanais, dois meses após a publicação.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 6º, II</td><td>Até 40 h semanais, um ano depois da etapa anterior.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 7º, XV</td><td>Dois dias de descanso semanal, um deles preferencialmente no domingo. Entra em vigor dois meses após a publicação (art. 10).</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 7º, § 2º</td><td>Em caráter excepcional, convenção ou acordo coletivo pode criar regime compensatório com dois dias de descanso na média do mês.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 8º</td><td>Empregado com diploma de nível superior e remuneração de pelo menos 2,5 vezes o teto do INSS fica fora das regras de duração e controle de jornada. O valor de R$ 21.188,87 muda quando o teto mudar.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 5º</td><td>Lei complementar pode criar regras transitórias para ME, MEI e EPP.</td><td class="pill-q">Pendente: lei não publicada</td></tr>
+          <tr><td>Art. 7º, § 3º</td><td>Lei pode disciplinar regimes diferenciados de jornada.</td><td class="pill-q">Pendente: depende de lei</td></tr>
+          <tr><td>Interjornada, intervalo e hora extra</td><td>Continuam: 11 h entre jornadas, intervalo previsto na CLT e adicional de 50% na hora extra.</td><td class="pill-q">Conferir na CLT</td></tr>
+          <tr><td>Texto oficial</td><td>Os dados acima vêm de resumo do texto, não do Planalto.</td><td class="pill-q">Pendente: conferir no Planalto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 5. Calculadora ===== -->
   <section class="card" id="calculadora">
-    <h2>4. Calculadora de jornada</h2>
+    <h2>5. Calculadora de jornada</h2>
     <p class="small">Estimativas para comparar escalas. Não consideram horas extras, banco de horas, feriados, faltas, férias nem regras da convenção coletiva.</p>
 
     <div class="tabs no-print" role="tablist" aria-label="Período">
@@ -235,7 +258,7 @@
 
   <!-- ===== 5. Comparação de escalas ===== -->
   <section class="card" id="comparacao">
-    <h2>5. Comparação entre escalas</h2>
+    <h2>6. Comparação entre escalas</h2>
     <p class="small">Quantas horas por dia cabem em cada limite semanal, para cada tipo de escala.</p>
     <div class="scroll">
       <table>
@@ -256,7 +279,7 @@
 
   <!-- ===== 6. Riscos ===== -->
   <section class="card" id="riscos">
-    <h2>6. Riscos para estudar</h2>
+    <h2>7. Riscos para estudar</h2>
     <p class="small">Lista de pontos a investigar. Ainda não há dados verificados sobre o impacto de cada um.</p>
     <div class="scroll">
       <table>
@@ -277,7 +300,7 @@
 
   <!-- ===== 7. Perguntas: trabalhador ===== -->
   <section class="card" data-only="employee">
-    <h2>7. Perguntas de quem trabalha</h2>
+    <h2>8. Perguntas de quem trabalha</h2>
     <details>
       <summary>Meu salário vai diminuir?</summary>
       <p>Reportagens dizem que não. Mesmo com menos horas, o salário deve ser o mesmo. Confirme no texto oficial e com seu sindicato.</p>
@@ -298,7 +321,7 @@
 
   <!-- ===== 7. Perguntas: empresário ===== -->
   <section class="card hidden" data-only="employer">
-    <h2>7. Perguntas de quem tem empresa</h2>
+    <h2>8. Perguntas de quem tem empresa</h2>
     <details>
       <summary>Preciso mudar a escala agora?</summary>
       <p>Não. A mudança começa cerca de 60 dias após a promulgação. Até lá, a regra atual vale.</p>
@@ -319,7 +342,7 @@
 
   <!-- ===== 8. Ações: empresário ===== -->
   <section class="card hidden" data-only="employer">
-    <h2>8. Por onde começar (empresário)</h2>
+    <h2>9. Por onde começar (empresário)</h2>
     <div id="checklist"></div>
     <p class="small">Marque o que já fez. Fica salvo só neste navegador.</p>
   </section>
@@ -505,7 +528,7 @@
     "Conversei com a equipe",
     "Li a convenção coletiva do meu setor",
     "Falei com um contador",
-    "Revisei os riscos da seção 6 que se aplicam ao meu negócio"
+    "Revisei os riscos da seção 7 que se aplicam ao meu negócio"
   ];
   var list = document.getElementById("checklist");
   var saved = {};
