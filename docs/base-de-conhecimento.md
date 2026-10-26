@@ -250,3 +250,8 @@ Anúncio em stories do Instagram, visto em 26/10/2026. Material pago com fichas 
 - **Lição para o projeto:**
   - O formato de ficha para imprimir é o que o mercado está vendendo.
   - Nosso diferencial é conferir as regras, incluindo as 2 folgas, que é exatamente onde esse material escorrega.
+
+## 12. Documentos complementares
+
+- [`relatorio-tipos-de-escala.md`](relatorio-tipos-de-escala.md): 5x2, 6x1, 4x3, 12x36, 24x48, 24x72, turno de revezamento e tempo parcial em cada etapa da EC 141.
+- [`escala-12x36.md`](escala-12x36.md): art. 59-A, as três formas de contar o intervalo, horas por mês, feriados (Súmula 444 do TST) e trabalho noturno, com fontes e pendências.
