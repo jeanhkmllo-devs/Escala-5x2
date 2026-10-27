@@ -296,6 +296,18 @@ Vista em anúncio da Meta em 27/10/2026. Usada só como referência. Não copiar
   - cada mudança gera um link novo;
   - não há confirmação de leitura.
 
+### Turnos e quadro da semana (kit 2.3)
+
+- **Turnos:** o gestor define até 4 (nome, início, fim e almoço) e o horário de funcionamento da empresa.
+- **Quadro da semana:** dias em colunas, turnos em linhas, folga e cobertura. Cada pessoa é um cartão colorido.
+  - Mover: arrastando no computador, tocando no celular, ou com Enter no teclado.
+- **Conferências novas:**
+  - horas por turno;
+  - almoço de cada turno;
+  - **descanso entre turnos diferentes** (por exemplo, quem fecha às 19h e abre às 5h30 fica 10h30 sem trabalhar, abaixo das 11 h);
+  - horas sem cobertura dentro do horário de funcionamento.
+- **Publicação:** o link (versão 2) leva o turno de cada dia. O painel mostra o turno no calendário, usa abreviações únicas na tabela da equipe (F fica para folga) e exporta o `.ics` com o horário de cada turno. Links da versão 1 continuam abrindo.
+
 ### Próxima versão (com servidor, por exemplo no Supabase que a PeopleGT já usa)
 
 - Link fixo por equipe, que se atualiza quando o gestor publica.

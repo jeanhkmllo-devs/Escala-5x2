@@ -126,7 +126,7 @@
 
     <section class="card">
       <h2>Equipe</h2>
-      <p class="small">T = trabalha · F = folga</p>
+      <p class="small" id="legend">T = trabalha · F = folga</p>
       <div class="table-wrap" id="team"></div>
     </section>
   </main>
@@ -161,22 +161,43 @@
   }
   function isStr(v, max) { return typeof v === "string" && v.length <= max; }
   function validate(d) {
-    if (!d || d.v !== 1) return null;
+    if (!d || (d.v !== 1 && d.v !== 2)) return null;
     if (!isStr(d.m, 7) || !/^\d{4}-\d{2}$/.test(d.m)) return null;
     var y = parseInt(d.m.slice(0, 4), 10), m = parseInt(d.m.slice(5), 10) - 1;
     if (m < 0 || m > 11) return null;
     var dim = new Date(y, m + 1, 0).getDate();
     if (SCALES.indexOf(d.s) === -1) return null;
     if (!Array.isArray(d.p) || !d.p.length || d.p.length > 300) return null;
+    var tr;
+    if (d.v === 2) {
+      if (!Array.isArray(d.tr) || !d.tr.length || d.tr.length > 4) return null;
+      for (var j = 0; j < d.tr.length; j++) {
+        var t = d.tr[j];
+        if (!t || !isStr(t.n, 30) || !t.n.trim() || !isStr(t.t, 40) || typeof t.a !== "number" || typeof t.b !== "number" ||
+            t.a < 0 || t.a >= 1440 || t.b <= 0 || t.b > 1600) return null;
+      }
+      tr = d.tr;
+    }
     for (var i = 0; i < d.p.length; i++) {
       var p = d.p[i];
-      if (!p || !isStr(p.n, 60) || !p.n.trim() || !isStr(p.o, 31) || p.o.length !== dim || !/^[01]+$/.test(p.o)) return null;
+      if (!p || !isStr(p.n, 60) || !p.n.trim() || !isStr(p.o, 31) || p.o.length !== dim) return null;
+      if (d.v === 1 && !/^[01]+$/.test(p.o)) return null;
+      if (d.v === 2 && !/^[0-9]+$/.test(p.o)) return null;
+      var days = [];
+      for (var c = 0; c < dim; c++) {
+        var ch = parseInt(p.o.charAt(c), 10);
+        if (d.v === 1) days.push(ch === 1 ? -1 : 0);
+        else if (ch > tr.length) return null;
+        else days.push(ch - 1);
+      }
+      p.days = days;
     }
     if (d.e !== undefined && !isStr(d.e, 80)) return null;
     if (d.r !== undefined && !isStr(d.r, 300)) return null;
     if (d.u !== undefined && !isStr(d.u, 10)) return null;
     if (!d.h || !isStr(d.h.t, 80) || typeof d.h.a !== "number" || typeof d.h.b !== "number" ||
         d.h.a < 0 || d.h.a >= 1440 || d.h.b <= 0 || d.h.b > 1600) return null;
+    d.turnos = tr || [{ n: "Trabalho", t: d.h.t, a: d.h.a, b: d.h.b }];
     return { y: y, m: m, dim: dim, d: d };
   }
 
@@ -190,7 +211,24 @@
   $("app").classList.remove("hidden");
   txt($("company"), D.e && D.e.trim() ? D.e : "Escala da equipe");
   txt($("title"), "Escala de " + MONTHS[M] + " de " + Y);
-  txt($("meta"), "Escala " + D.s + " · " + D.h.t + (D.u ? " · publicada em " + D.u.split("-").reverse().join("/") : ""));
+  var TR = D.turnos, MULTI = TR.length > 1;
+  // abreviação única de cada turno; "F" fica reservado para folga (mesma regra do kit)
+  var AB = (function (names) {
+    var used = { F: true }, out = [];
+    names.forEach(function (n, i) {
+      var clean = String(n).replace(/[^A-Za-zÀ-ÿ0-9]/g, "");
+      var a = clean.charAt(0).toUpperCase(), b = a + clean.charAt(1).toLowerCase();
+      var pick = [a, b, clean.slice(0, 3)].filter(function (c) { return c && !used[c]; })[0] || "T" + (i + 1);
+      used[pick] = true;
+      out.push(pick);
+    });
+    return out;
+  })(TR.map(function (t) { return t.n; }));
+  txt($("meta"), "Escala " + D.s + " · " + (MULTI ? TR.map(function (t) { return t.n + " " + t.t; }).join(" · ") : D.h.t) +
+    (D.u ? " · publicada em " + D.u.split("-").reverse().join("/") : ""));
+  if (MULTI) {
+    $("legend").textContent = "F = folga · " + TR.map(function (t, i) { return AB[i] + " = " + t.n + " (" + t.t + ")"; }).join(" · ");
+  }
   document.title = "Escala de " + MONTHS[M] + " de " + Y + (D.e ? " · " + D.e : "");
   if (D.r && D.r.trim()) { txt($("note"), D.r); $("note").classList.remove("hidden"); }
 
@@ -213,9 +251,9 @@
       var nm = document.createElement("th"); nm.className = "name"; nm.textContent = p.n; tr.appendChild(nm);
       for (var k = 0; k < DIM; k++) {
         var td = document.createElement("td"), c = document.createElement("span");
-        var off = p.o.charAt(k) === "1";
+        var off = p.days[k] === -1;
         c.className = "c" + (off ? " off" : "");
-        c.textContent = off ? "F" : "T";
+        c.textContent = off ? "F" : MULTI ? AB[p.days[k]] : "T";
         td.appendChild(c); tr.appendChild(td);
       }
       tbody.appendChild(tr);
@@ -237,7 +275,7 @@
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var nextOff = null;
     for (var k = 0; k < DIM; k++) {
-      var dt = new Date(Y, M, k + 1), off = p.o.charAt(k) === "1";
+      var dt = new Date(Y, M, k + 1), off = p.days[k] === -1;
       if (off) { offs++; if (dayIdx(dt) === 6) sun++; if (!nextOff && dt >= today) nextOff = dt; } else work++;
     }
     txt($("s-work"), String(work)); txt($("s-off"), String(offs)); txt($("s-sun"), String(sun));
@@ -253,11 +291,11 @@
     var first = dayIdx(new Date(Y, M, 1));
     for (var e = 0; e < first; e++) { var em = document.createElement("div"); em.className = "d empty"; cal.appendChild(em); }
     for (k = 0; k < DIM; k++) {
-      var date = new Date(Y, M, k + 1), isOff = p.o.charAt(k) === "1";
+      var date = new Date(Y, M, k + 1), isOff = p.days[k] === -1;
       var cell = document.createElement("div");
       cell.className = "d" + (isOff ? " off" : "") + (date.getTime() === today.getTime() ? " today" : "");
       var bnum = document.createElement("b"); bnum.textContent = k + 1;
-      var lab = document.createElement("span"); lab.textContent = isOff ? "Folga" : "";
+      var lab = document.createElement("span"); lab.textContent = isOff ? "Folga" : MULTI ? TR[p.days[k]].n.slice(0, 9) : "";
       cell.appendChild(bnum); cell.appendChild(lab);
       cal.appendChild(cell);
     }
@@ -284,15 +322,16 @@
     var stamp = now.getUTCFullYear() + pad(now.getUTCMonth() + 1) + pad(now.getUTCDate()) + "T" + pad(now.getUTCHours()) + pad(now.getUTCMinutes()) + pad(now.getUTCSeconds()) + "Z";
     var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kit Escala 5x2//PT-BR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
     for (var k = 0; k < DIM; k++) {
-      if (p.o.charAt(k) === "1") continue;
-      var start = new Date(Y, M, k + 1, 0, D.h.a), end = new Date(start.getTime() + D.h.b * 60000);
+      if (p.days[k] === -1) continue;
+      var tu = TR[p.days[k]];
+      var start = new Date(Y, M, k + 1, 0, tu.a), end = new Date(start.getTime() + tu.b * 60000);
       lines.push("BEGIN:VEVENT",
         "UID:" + D.m + "-" + i + "-" + (k + 1) + "@escala5x2",
         "DTSTAMP:" + stamp,
         "DTSTART:" + icsDate(start),
         "DTEND:" + icsDate(end),
-        "SUMMARY:" + icsText("Trabalho" + (D.e ? " · " + D.e : "")),
-        "DESCRIPTION:" + icsText("Escala " + D.s + " · " + D.h.t),
+        "SUMMARY:" + icsText((MULTI ? tu.n : "Trabalho") + (D.e ? " · " + D.e : "")),
+        "DESCRIPTION:" + icsText("Escala " + D.s + " · " + tu.t),
         "END:VEVENT");
     }
     lines.push("END:VCALENDAR");
