@@ -97,6 +97,8 @@ Em ordem de prioridade:
    - nova ficha de segmentos.
 7. **Página gratuita:** 14,9 milhões de trabalhadores, segmentos e o que ainda depende de lei.
 
+**Status (27/10/2026):** os itens 1 a 7 foram aplicados no kit 2.4 e na página `index.html`. O gerador também passou a respeitar no máximo 6 dias seguidos ao escolher as folgas.
+
 ## 4. Pendências que continuam
 
 - Texto oficial no Planalto ou no Diário Oficial (arts. 3º, 6º, 7º e 10).
