@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Escala da equipe</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-2: #f5f5f7;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --line: rgba(0, 0, 0, 0.08);
+    --accent: #0071e3;
+    --accent-soft: rgba(0, 113, 227, 0.1);
+    --green: #248a3d;
+    --green-soft: rgba(52, 199, 89, 0.14);
+    --orange-soft: rgba(255, 149, 0, 0.14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #000000; --surface: #1c1c1e; --surface-2: #2c2c2e; --text: #f5f5f7; --muted: #98989d;
+      --line: rgba(255, 255, 255, 0.1); --accent: #0a84ff; --accent-soft: rgba(10, 132, 255, 0.18);
+      --green: #30d158; --green-soft: rgba(48, 209, 88, 0.16); --orange-soft: rgba(255, 159, 10, 0.16); --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #000000; --surface: #1c1c1e; --surface-2: #2c2c2e; --text: #f5f5f7; --muted: #98989d;
+    --line: rgba(255, 255, 255, 0.1); --accent: #0a84ff; --accent-soft: rgba(10, 132, 255, 0.18);
+    --green: #30d158; --green-soft: rgba(48, 209, 88, 0.16); --orange-soft: rgba(255, 159, 10, 0.16); --shadow: none;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 32px 0 18px; }
+  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; margin: 0 0 6px; }
+  h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); letter-spacing: -0.03em; line-height: 1.1; margin: 0 0 6px; }
+  .meta { color: var(--muted); margin: 0; font-size: 15px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 22px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  h2 { font-size: 1.25rem; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .small { font-size: 13px; color: var(--muted); }
+  .msg { border-radius: 14px; padding: 12px 14px; font-size: 15px; background: var(--accent-soft); margin-bottom: 16px; white-space: pre-line; }
+  .msg.warn { background: var(--orange-soft); }
+  label { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 6px; }
+  select {
+    font: inherit; font-size: 17px; width: 100%; padding: 12px 14px; color: var(--text);
+    background: var(--surface-2); border: 1px solid transparent; border-radius: 12px;
+  }
+  select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .hero-next { margin-top: 18px; background: var(--green-soft); border-radius: 16px; padding: 16px; }
+  .hero-next .l { font-size: 13px; color: var(--muted); }
+  .hero-next .v { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--green); }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  .stat { background: var(--surface-2); border-radius: 14px; padding: 12px; }
+  .stat .l { font-size: 12px; color: var(--muted); }
+  .stat .v { font-size: 1.4rem; font-weight: 600; }
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-top: 16px; }
+  .cal .wd { text-align: center; font-size: 12px; color: var(--muted); font-weight: 600; padding-bottom: 2px; }
+  .cal .d { border-radius: 12px; padding: 8px 2px; text-align: center; min-height: 54px; background: var(--accent-soft); color: var(--accent); }
+  .cal .d b { display: block; font-size: 15px; color: var(--text); }
+  .cal .d span { font-size: 11px; font-weight: 600; }
+  .cal .d.off { background: var(--surface-2); color: var(--muted); }
+  .cal .d.empty { background: transparent; }
+  .cal .d.today { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .btn { font: inherit; font-size: 15px; font-weight: 500; border: 0; border-radius: 999px; padding: 11px 20px; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.secondary { background: var(--accent-soft); color: var(--accent); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; margin-top: 12px; }
+  table { border-collapse: separate; border-spacing: 0; font-size: 13px; min-width: 100%; }
+  th, td { padding: 6px 3px; text-align: center; border-bottom: 1px solid var(--line); }
+  thead th { background: var(--surface); color: var(--muted); font-weight: 500; font-size: 12px; line-height: 1.25; }
+  thead th b { display: block; color: var(--text); }
+  .name { position: sticky; left: 0; background: var(--surface); text-align: left; padding: 6px 12px; min-width: 100px; font-weight: 500; }
+  tr.me .name { color: var(--accent); font-weight: 700; }
+  .c { display: inline-flex; width: 26px; height: 26px; border-radius: 7px; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; background: var(--accent-soft); color: var(--accent); }
+  .c.off { background: var(--surface-2); color: var(--muted); font-weight: 500; }
+  footer { padding: 8px 0 40px; text-align: center; font-size: 12px; color: var(--muted); }
+  .hidden { display: none !important; }
+  @media print {
+    body { background: #fff; }
+    .card { box-shadow: none; }
+    .actions, select, label[for="who"] { display: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow" id="company">Escala da equipe</p>
+    <h1 id="title">Escala do mês</h1>
+    <p class="meta" id="meta"></p>
+  </header>
+
+  <div id="error" class="msg warn hidden"></div>
+
+  <main id="app" class="hidden">
+    <div id="note" class="msg hidden"></div>
+
+    <section class="card">
+      <label for="who">Quem é você?</label>
+      <select id="who"></select>
+      <div id="mine" class="hidden">
+        <div class="hero-next"><div class="l" id="next-label">Próxima folga</div><div class="v" id="next-off"></div></div>
+        <div class="stats">
+          <div class="stat"><div class="l">Dias de trabalho</div><div class="v" id="s-work"></div></div>
+          <div class="stat"><div class="l">Folgas</div><div class="v" id="s-off"></div></div>
+          <div class="stat"><div class="l">Domingos de folga</div><div class="v" id="s-sun"></div></div>
+        </div>
+        <div class="cal" id="cal" aria-label="Seu calendário do mês"></div>
+        <p class="small" style="margin:10px 0 0">Azul: dia de trabalho. Cinza: folga. O contorno marca hoje.</p>
+        <div class="actions">
+          <button type="button" class="btn primary" id="ics">Adicionar ao meu calendário</button>
+          <button type="button" class="btn secondary" id="print">Imprimir</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Equipe</h2>
+      <p class="small" id="legend">T = trabalha · F = folga</p>
+      <div class="table-wrap" id="team"></div>
+    </section>
+  </main>
+
+  <footer>
+    Escala publicada com o Kit Escala 5x2. Em caso de dúvida, fale com seu gestor.<br>
+    Esta página não guarda dados: a escala vem no próprio link.
+  </footer>
+</div>
+
+<script>
+(function () {
+  var DAYS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+  var LONG = ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"];
+  var MONTHS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  var SCALES = ["5x2", "6x1", "4x3", "12x36", "24x48"];
+  var WHO_KEY = "painel-escala5x2-quem";
+
+  function $(id) { return document.getElementById(id); }
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function dayIdx(d) { return (d.getDay() + 6) % 7; }
+  function txt(el, s) { el.textContent = s; }
+  function fail(msg) { var e = $("error"); e.textContent = msg; e.classList.remove("hidden"); $("app").classList.add("hidden"); }
+
+  // ---------- leitura do link ----------
+  function decode(str) {
+    str = str.replace(/-/g, "+").replace(/_/g, "/");
+    while (str.length % 4) str += "=";
+    var bin = atob(str), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+  function isStr(v, max) { return typeof v === "string" && v.length <= max; }
+  function validate(d) {
+    if (!d || (d.v !== 1 && d.v !== 2)) return null;
+    if (!isStr(d.m, 7) || !/^\d{4}-\d{2}$/.test(d.m)) return null;
+    var y = parseInt(d.m.slice(0, 4), 10), m = parseInt(d.m.slice(5), 10) - 1;
+    if (m < 0 || m > 11) return null;
+    var dim = new Date(y, m + 1, 0).getDate();
+    if (SCALES.indexOf(d.s) === -1) return null;
+    if (!Array.isArray(d.p) || !d.p.length || d.p.length > 300) return null;
+    var tr;
+    if (d.v === 2) {
+      if (!Array.isArray(d.tr) || !d.tr.length || d.tr.length > 4) return null;
+      for (var j = 0; j < d.tr.length; j++) {
+        var t = d.tr[j];
+        if (!t || !isStr(t.n, 30) || !t.n.trim() || !isStr(t.t, 40) || typeof t.a !== "number" || typeof t.b !== "number" ||
+            t.a < 0 || t.a >= 1440 || t.b <= 0 || t.b > 1600) return null;
+      }
+      tr = d.tr;
+    }
+    for (var i = 0; i < d.p.length; i++) {
+      var p = d.p[i];
+      if (!p || !isStr(p.n, 60) || !p.n.trim() || !isStr(p.o, 31) || p.o.length !== dim) return null;
+      if (d.v === 1 && !/^[01]+$/.test(p.o)) return null;
+      if (d.v === 2 && !/^[0-9]+$/.test(p.o)) return null;
+      var days = [];
+      for (var c = 0; c < dim; c++) {
+        var ch = parseInt(p.o.charAt(c), 10);
+        if (d.v === 1) days.push(ch === 1 ? -1 : 0);
+        else if (ch > tr.length) return null;
+        else days.push(ch - 1);
+      }
+      p.days = days;
+    }
+    if (d.e !== undefined && !isStr(d.e, 80)) return null;
+    if (d.r !== undefined && !isStr(d.r, 300)) return null;
+    if (d.u !== undefined && !isStr(d.u, 10)) return null;
+    if (!d.h || !isStr(d.h.t, 80) || typeof d.h.a !== "number" || typeof d.h.b !== "number" ||
+        d.h.a < 0 || d.h.a >= 1440 || d.h.b <= 0 || d.h.b > 1600) return null;
+    d.turnos = tr || [{ n: "Trabalho", t: d.h.t, a: d.h.a, b: d.h.b }];
+    return { y: y, m: m, dim: dim, d: d };
+  }
+
+  var raw = (location.hash.match(/[#&]d=([A-Za-z0-9_-]+)/) || [])[1];
+  if (!raw) { fail("Este link não tem uma escala. Peça ao seu gestor o link completo."); return; }
+  var data;
+  try { data = validate(decode(raw)); } catch (e) { data = null; }
+  if (!data) { fail("Não foi possível ler a escala deste link. Ele pode estar incompleto. Peça ao seu gestor para enviar de novo."); return; }
+
+  var D = data.d, Y = data.y, M = data.m, DIM = data.dim;
+  $("app").classList.remove("hidden");
+  txt($("company"), D.e && D.e.trim() ? D.e : "Escala da equipe");
+  txt($("title"), "Escala de " + MONTHS[M] + " de " + Y);
+  var TR = D.turnos, MULTI = TR.length > 1;
+  // abreviação única de cada turno; "F" fica reservado para folga (mesma regra do kit)
+  var AB = (function (names) {
+    var used = { F: true }, out = [];
+    names.forEach(function (n, i) {
+      var clean = String(n).replace(/[^A-Za-zÀ-ÿ0-9]/g, "");
+      var a = clean.charAt(0).toUpperCase(), b = a + clean.charAt(1).toLowerCase();
+      var pick = [a, b, clean.slice(0, 3)].filter(function (c) { return c && !used[c]; })[0] || "T" + (i + 1);
+      used[pick] = true;
+      out.push(pick);
+    });
+    return out;
+  })(TR.map(function (t) { return t.n; }));
+  txt($("meta"), "Escala " + D.s + " · " + (MULTI ? TR.map(function (t) { return t.n + " " + t.t; }).join(" · ") : D.h.t) +
+    (D.u ? " · publicada em " + D.u.split("-").reverse().join("/") : ""));
+  if (MULTI) {
+    $("legend").textContent = "F = folga · " + TR.map(function (t, i) { return AB[i] + " = " + t.n + " (" + t.t + ")"; }).join(" · ");
+  }
+  document.title = "Escala de " + MONTHS[M] + " de " + Y + (D.e ? " · " + D.e : "");
+  if (D.r && D.r.trim()) { txt($("note"), D.r); $("note").classList.remove("hidden"); }
+
+  // ---------- equipe ----------
+  function renderTeam(me) {
+    var table = document.createElement("table");
+    var thead = document.createElement("thead"), hr = document.createElement("tr");
+    var th0 = document.createElement("th"); th0.className = "name"; th0.textContent = "Equipe"; hr.appendChild(th0);
+    for (var day = 1; day <= DIM; day++) {
+      var th = document.createElement("th"), b = document.createElement("b");
+      b.textContent = day; th.appendChild(b);
+      th.appendChild(document.createTextNode(DAYS[dayIdx(new Date(Y, M, day))]));
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr); table.appendChild(thead);
+    var tbody = document.createElement("tbody");
+    D.p.forEach(function (p, i) {
+      var tr = document.createElement("tr");
+      if (i === me) tr.className = "me";
+      var nm = document.createElement("th"); nm.className = "name"; nm.textContent = p.n; tr.appendChild(nm);
+      for (var k = 0; k < DIM; k++) {
+        var td = document.createElement("td"), c = document.createElement("span");
+        var off = p.days[k] === -1;
+        c.className = "c" + (off ? " off" : "");
+        c.textContent = off ? "F" : MULTI ? AB[p.days[k]] : "T";
+        td.appendChild(c); tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    var box = $("team"); box.innerHTML = ""; box.appendChild(table);
+  }
+
+  // ---------- visão pessoal ----------
+  var who = $("who");
+  var opt0 = document.createElement("option"); opt0.value = ""; opt0.textContent = "Escolha seu nome"; who.appendChild(opt0);
+  D.p.forEach(function (p, i) { var o = document.createElement("option"); o.value = String(i); o.textContent = p.n; who.appendChild(o); });
+
+  function renderMine(i) {
+    renderTeam(i);
+    if (i < 0) { $("mine").classList.add("hidden"); return; }
+    $("mine").classList.remove("hidden");
+    var p = D.p[i], work = 0, offs = 0, sun = 0;
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var nextOff = null;
+    for (var k = 0; k < DIM; k++) {
+      var dt = new Date(Y, M, k + 1), off = p.days[k] === -1;
+      if (off) { offs++; if (dayIdx(dt) === 6) sun++; if (!nextOff && dt >= today) nextOff = dt; } else work++;
+    }
+    txt($("s-work"), String(work)); txt($("s-off"), String(offs)); txt($("s-sun"), String(sun));
+    if (nextOff) {
+      txt($("next-label"), nextOff.getTime() === today.getTime() ? "Hoje é sua folga" : "Próxima folga");
+      txt($("next-off"), LONG[dayIdx(nextOff)] + ", " + pad(nextOff.getDate()) + "/" + pad(nextOff.getMonth() + 1));
+    } else {
+      txt($("next-label"), "Folgas deste mês");
+      txt($("next-off"), offs ? "já passaram" : "nenhuma");
+    }
+    var cal = $("cal"); cal.innerHTML = "";
+    DAYS.forEach(function (n) { var w = document.createElement("div"); w.className = "wd"; w.textContent = n; cal.appendChild(w); });
+    var first = dayIdx(new Date(Y, M, 1));
+    for (var e = 0; e < first; e++) { var em = document.createElement("div"); em.className = "d empty"; cal.appendChild(em); }
+    for (k = 0; k < DIM; k++) {
+      var date = new Date(Y, M, k + 1), isOff = p.days[k] === -1;
+      var cell = document.createElement("div");
+      cell.className = "d" + (isOff ? " off" : "") + (date.getTime() === today.getTime() ? " today" : "");
+      var bnum = document.createElement("b"); bnum.textContent = k + 1;
+      var lab = document.createElement("span"); lab.textContent = isOff ? "Folga" : MULTI ? TR[p.days[k]].n.slice(0, 9) : "";
+      cell.appendChild(bnum); cell.appendChild(lab);
+      cal.appendChild(cell);
+    }
+    try { localStorage.setItem(WHO_KEY + ":" + D.m + ":" + (D.e || ""), p.n); } catch (err) { /* armazenamento bloqueado */ }
+  }
+  who.addEventListener("change", function () { renderMine(who.value === "" ? -1 : parseInt(who.value, 10)); });
+
+  var remembered = null;
+  try { remembered = localStorage.getItem(WHO_KEY + ":" + D.m + ":" + (D.e || "")); } catch (err) { remembered = null; }
+  var idx = remembered ? D.p.findIndex(function (p) { return p.n === remembered; }) : -1;
+  if (idx >= 0) who.value = String(idx);
+  renderMine(idx);
+
+  // ---------- calendário (.ics) ----------
+  function icsText(s) { return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n"); }
+  function icsDate(d) {
+    return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + "T" + pad(d.getHours()) + pad(d.getMinutes()) + "00";
+  }
+  $("ics").addEventListener("click", function () {
+    var i = who.value === "" ? -1 : parseInt(who.value, 10);
+    if (i < 0) return;
+    var p = D.p[i];
+    var now = new Date();
+    var stamp = now.getUTCFullYear() + pad(now.getUTCMonth() + 1) + pad(now.getUTCDate()) + "T" + pad(now.getUTCHours()) + pad(now.getUTCMinutes()) + pad(now.getUTCSeconds()) + "Z";
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Kit Escala 5x2//PT-BR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+    for (var k = 0; k < DIM; k++) {
+      if (p.days[k] === -1) continue;
+      var tu = TR[p.days[k]];
+      var start = new Date(Y, M, k + 1, 0, tu.a), end = new Date(start.getTime() + tu.b * 60000);
+      lines.push("BEGIN:VEVENT",
+        "UID:" + D.m + "-" + i + "-" + (k + 1) + "@escala5x2",
+        "DTSTAMP:" + stamp,
+        "DTSTART:" + icsDate(start),
+        "DTEND:" + icsDate(end),
+        "SUMMARY:" + icsText((MULTI ? tu.n : "Trabalho") + (D.e ? " · " + D.e : "")),
+        "DESCRIPTION:" + icsText("Escala " + D.s + " · " + tu.t),
+        "END:VEVENT");
+    }
+    lines.push("END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "escala-" + D.m + "-" + p.n.toLowerCase().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") + ".ics";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+  $("print").addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>

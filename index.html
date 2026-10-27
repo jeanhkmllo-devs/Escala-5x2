@@ -3,164 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Escala 5x2 — Consulta</title>
+<title>Escala 5x2 — Consulta completa</title>
 <style>
   :root {
-    --bg: #f7f8fa;
+    --bg: #f6f7f9;
     --card: #ffffff;
-    --text: #1d2330;
-    --muted: #5b6474;
-    --line: #dde1e8;
+    --text: #1f2633;
+    --muted: #5d6676;
+    --line: #dfe3ea;
     --accent: #1f7a4d;
-    --accent-soft: #e6f3ec;
-    --warn: #9a5b00;
-    --warn-soft: #fff4e0;
+    --accent-soft: #e5f3eb;
     --bad: #b42318;
     --bad-soft: #fde8e6;
+    --warn: #8a5300;
+    --warn-soft: #fff3dc;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #12151b;
-      --card: #1b2029;
-      --text: #e8ebf0;
-      --muted: #9aa3b2;
-      --line: #2c333f;
-      --accent-soft: #15301f;
-      --warn-soft: #3a2a10;
-      --bad-soft: #3a1714;
+      --bg: #13161c; --card: #1c2129; --text: #eceff4; --muted: #a2aab8;
+      --line: #2d3440; --accent-soft: #163222; --bad-soft: #3a1714; --warn-soft: #3a2c12;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #12151b;
-    --card: #1b2029;
-    --text: #e8ebf0;
-    --muted: #9aa3b2;
-    --line: #2c333f;
-    --accent-soft: #15301f;
-    --warn-soft: #3a2a10;
-    --bad-soft: #3a1714;
+    --bg: #13161c; --card: #1c2129; --text: #eceff4; --muted: #a2aab8;
+    --line: #2d3440; --accent-soft: #163222; --bad-soft: #3a1714; --warn-soft: #3a2c12;
   }
-  body[data-mode="employer"] {
-    --accent: #1d5fb8;
-    --accent-soft: #e4eefb;
-  }
+  body[data-mode="employer"] { --accent: #1d5fb8; --accent-soft: #e4eefb; }
   @media (prefers-color-scheme: dark) {
-    body[data-mode="employer"]:not([data-theme="light"]) { --accent-soft: #112a4a; }
+    body[data-mode="employer"]:not([data-theme="light"]) { --accent-soft: #14294a; }
   }
-  body[data-mode="employer"][data-theme="dark"] { --accent-soft: #112a4a; }
+  body[data-mode="employer"][data-theme="dark"] { --accent-soft: #14294a; }
 
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
-  main { max-width: 960px; margin: 0 auto; padding: 16px; }
-  h1 { font-size: 1.9rem; margin: 8px 0 4px; }
-  h2 { font-size: 1.25rem; margin: 0 0 12px; }
-  h3 { font-size: 1.02rem; margin: 16px 0 6px; }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 12px 0 6px; }
+  h2 { font-size: 1.3rem; margin: 0 0 10px; }
+  h3 { font-size: 1.05rem; margin: 16px 0 6px; }
   p { margin: 0 0 10px; }
-  .sub { color: var(--muted); margin: 0 0 16px; }
-  section, .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px;
-    margin: 0 0 16px;
+  .lead { color: var(--muted); font-size: 1.05rem; }
+  .small { color: var(--muted); font-size: 0.9rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px; margin: 0 0 16px;
   }
   .hidden { display: none !important; }
+  a { color: var(--accent); }
 
   /* chave seletora */
   .switch {
-    display: inline-flex;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 4px;
-    background: var(--card);
-    margin-top: 8px;
+    display: flex; gap: 6px; padding: 6px; margin: 16px 0 6px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    max-width: 420px;
   }
   .switch button {
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    font: inherit;
-    padding: 8px 16px;
-    border-radius: 999px;
-    cursor: pointer;
+    flex: 1; border: 0; background: transparent; color: var(--muted);
+    font: inherit; font-weight: 600; padding: 10px 12px; border-radius: 999px; cursor: pointer;
   }
-  .switch button[aria-pressed="true"] {
-    background: var(--accent);
-    color: #fff;
-  }
+  .switch button[aria-pressed="true"] { background: var(--accent); color: #fff; }
 
-  .status {
-    border-left: 4px solid var(--accent);
-    background: var(--accent-soft);
-    padding: 12px 14px;
-    border-radius: 8px;
-    margin-bottom: 16px;
+  /* abas da calculadora */
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tabs button {
+    border: 1px solid var(--line); background: transparent; color: var(--text);
+    font: inherit; padding: 8px 14px; border-radius: 999px; cursor: pointer;
   }
-  .countdown { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; }
-  .scroll { overflow-x: auto; }
-
-  label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.95rem; }
-  input[type="number"], input[type="month"], input[type="text"] {
-    font: inherit;
-    padding: 8px 10px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--bg);
-    color: var(--text);
-    width: 100%;
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); align-items: end; }
+  label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.92rem; }
+  input, select {
+    font: inherit; padding: 9px 10px; width: 100%;
+    border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text);
   }
-  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); align-items: end; }
-  button.action {
-    font: inherit;
-    padding: 9px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--accent);
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
+  .action {
+    font: inherit; font-weight: 600; padding: 10px 16px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: #fff;
   }
   button.ghost {
-    font: inherit;
-    padding: 9px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--line);
-    background: transparent;
-    color: var(--text);
-    cursor: pointer;
+    font: inherit; padding: 9px 14px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--line); background: transparent; color: var(--text);
   }
-  .result { margin-top: 12px; padding: 12px; border-radius: 8px; background: var(--bg); }
+
+  .result { margin-top: 14px; padding: 14px; border-radius: 10px; background: var(--bg); }
+  .kpis { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 12px; }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .kpi b { display: block; font-size: 1.25rem; }
   .ok { color: var(--accent); font-weight: 600; }
   .bad { color: var(--bad); font-weight: 600; }
-  .bad-cell { background: var(--bad-soft); }
-  .off { color: var(--muted); }
-  .on { font-weight: 600; }
-  .cover td, .cover th { text-align: center; font-size: 0.85rem; padding: 6px 3px; }
-  .cover td:first-child, .cover th:first-child { text-align: left; }
 
-  details { border-top: 1px solid var(--line); padding: 10px 0; }
-  summary { cursor: pointer; font-weight: 600; }
-  details p { margin: 8px 0 0; color: var(--muted); }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
 
-  .check { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; }
-  .check input { margin-top: 5px; }
+  .pill-yes { color: var(--accent); font-weight: 700; }
+  .pill-no { color: var(--bad); font-weight: 700; }
+  .pill-q { color: var(--warn); font-weight: 700; }
 
-  .warn { background: var(--warn-soft); border-left: 4px solid var(--warn); padding: 10px 12px; border-radius: 8px; }
-  .sources a { color: var(--accent); }
-  small, .small { color: var(--muted); font-size: 0.85rem; }
+  .notice { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 12px 14px; }
+  .info { background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; }
+
+  details { border-top: 1px solid var(--line); padding: 12px 0; }
+  details:first-of-type { border-top: 0; }
+  summary { cursor: pointer; font-weight: 700; }
+  details p { margin: 8px 0 0; }
+
+  .check { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; }
+  .check input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--accent); flex: 0 0 18px; }
+  .check span { font-weight: 400; }
+
+  dl.gloss dt { font-weight: 700; margin-top: 10px; }
+  dl.gloss dd { margin: 2px 0 0; color: var(--muted); }
 
   @media print {
     body { background: #fff; color: #000; }
     .no-print { display: none !important; }
-    section, .card { border: 0; box-shadow: none; padding: 0; }
+    .card { border: 0; padding: 0; }
   }
 </style>
 </head>
@@ -168,93 +130,188 @@
 <main>
 
   <header>
-    <h1>Escala 5x2</h1>
-    <p class="sub">Consulta sobre a nova jornada de trabalho, com base em fontes oficiais.</p>
-    <div class="switch no-print" role="group" aria-label="Escolha seu perfil">
-      <button type="button" data-set-mode="employee" aria-pressed="true">Colaborador</button>
-      <button type="button" data-set-mode="employer" aria-pressed="false">Empresário</button>
+    <h1>Escala 5x2: o que é, quanto muda e o que observar</h1>
+    <p class="lead">Consulta com explicação, calculadora semanal e mensal, comparação com outros tipos de escala e os riscos que precisamos acompanhar.</p>
+    <p class="small no-print"><a href="leigo.html">Versão mais simples, com linguagem para quem está começando →</a></p>
+    <div class="switch no-print" role="group" aria-label="Quem é você?">
+      <button type="button" data-set-mode="employee" aria-pressed="true">Sou trabalhador</button>
+      <button type="button" data-set-mode="employer" aria-pressed="false">Sou empresário</button>
     </div>
   </header>
 
-  <div class="status" style="margin-top:16px">
-    <strong>Situação em 26/10/2026:</strong> a Emenda Constitucional nº 141/2026 foi promulgada em 16/10/2026,
-    segundo a Agência Brasil e outros veículos. Ela ainda <strong>não está em vigor</strong>: as mudanças começam
-    60 dias após a promulgação. Antes disso, valem as regras atuais.
-    <div style="margin-top:10px">
-      <span class="small">Início da 1ª etapa (fontes divergem entre 15/12 e 16/12/2026)</span><br>
-      <span class="countdown" id="countdown">—</span>
-    </div>
-  </div>
-
-  <section>
-    <h2>Cronograma</h2>
-    <div class="scroll">
-      <table>
-        <thead><tr><th>Quando</th><th>O que muda</th><th>Jornada semanal</th><th>Folgas semanais</th></tr></thead>
-        <tbody>
-          <tr><td>Hoje (até o início da 1ª etapa)</td><td>Regra atual</td><td>44 h</td><td>1 (DSR)</td></tr>
-          <tr><td>15 ou 16/12/2026</td><td>1ª etapa: 60 dias após a promulgação</td><td>42 h</td><td>2 (5x2)</td></tr>
-          <tr><td>16/12/2027</td><td>2ª etapa: 12 meses depois</td><td>40 h</td><td>2 (5x2)</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small" style="margin-top:10px">
-      Reportagens dizem que não há redução de salário. Confirme isso no texto oficial da emenda.
-    </p>
-  </section>
-
-  <section>
-    <h2>O que continua valendo</h2>
-    <p class="small">Regras da CLT e da Constituição que não mudam com a emenda.</p>
-    <div class="scroll">
-      <table>
-        <thead><tr><th>Regra</th><th>Base</th></tr></thead>
-        <tbody>
-          <tr><td>Intervalo mínimo de 11 h entre duas jornadas</td><td>CLT, art. 66</td></tr>
-          <tr><td>Intervalo para descanso e alimentação dentro da jornada</td><td>CLT, art. 71</td></tr>
-          <tr><td>Hora extra com adicional mínimo de 50%</td><td>Constituição, art. 7º, XVI</td></tr>
-          <tr><td>Comércio: 1 domingo de folga a cada 3 semanas (regra de setor, a confirmar com seu sindicato)</td><td>Lei 11.603/2007</td></tr>
-        </tbody>
-      </table>
+  <!-- ===== 1. Explicação ===== -->
+  <section class="card" id="explicacao">
+    <h2>1. O que é a escala 5x2</h2>
+    <p>A escala 5x2 é a jornada em que a pessoa <strong>trabalha 5 dias e tem 2 dias de folga</strong> por semana. Hoje, a regra mais comum é 6x1: trabalhar 6 dias e descansar 1.</p>
+    <p>A mudança foi aprovada pela <strong>Emenda Constitucional nº 141/2026</strong>, promulgada em 16/10/2026, segundo reportagens. Ela tem três pontos principais:</p>
+    <ul>
+      <li>Passa a garantir <strong>2 folgas semanais</strong>.</li>
+      <li>Reduz a jornada semanal de <strong>44 h para 42 h</strong> na 1ª etapa e para <strong>40 h</strong> na 2ª etapa.</li>
+      <li>Permite que acordo ou convenção coletiva adote outro regime, com compensação dentro do mesmo mês.</li>
+    </ul>
+    <div class="notice" style="margin-top:12px">
+      <strong>Ainda não está em vigor.</strong> As mudanças começam 60 dias após a promulgação. Fontes divergem entre 15 e 16/12/2026. Confirme no texto oficial.
     </div>
   </section>
 
-  <section>
-    <h2>Calculadora de jornada</h2>
+  <!-- ===== 2. Cronograma ===== -->
+  <section class="card" id="cronograma">
+    <h2>2. Quando muda</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Data</th><th>Etapa</th><th>Jornada semanal</th><th>Folgas semanais</th></tr></thead>
+        <tbody>
+          <tr><td>Hoje, até o início da 1ª etapa</td><td>Regra atual</td><td>44 h</td><td>1 (DSR)</td></tr>
+          <tr><td>15 ou 16/12/2026</td><td>1ª etapa (60 dias após a promulgação)</td><td>42 h</td><td>2</td></tr>
+          <tr><td>16/12/2027</td><td>2ª etapa (12 meses depois)</td><td>40 h</td><td>2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="margin-top:10px">Contagem regressiva para a 1ª etapa: <strong id="countdown">—</strong></p>
+  </section>
+
+  <!-- ===== 3. O que muda e o que não muda ===== -->
+  <section class="card" id="muda">
+    <h2>3. O que muda e o que não muda</h2>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Tema</th><th>Muda?</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td>Dias de folga por semana</td><td class="pill-yes">Sim</td><td>De 1 para 2, na escala 5x2.</td></tr>
+          <tr><td>Horas por semana</td><td class="pill-yes">Sim</td><td>De 44 h para 42 h e depois 40 h.</td></tr>
+          <tr><td>Salário</td><td class="pill-q">Dizem que não</td><td>Reportagens informam que não há redução de salário. Confirme no texto oficial.</td></tr>
+          <tr><td>Intervalo mínimo entre duas jornadas</td><td class="pill-no">Não</td><td>Continua valendo 11 h (CLT, art. 66).</td></tr>
+          <tr><td>Intervalo para almoço e descanso</td><td class="pill-no">Não</td><td>Continua previsto na CLT (art. 71).</td></tr>
+          <tr><td>Hora extra</td><td class="pill-no">Não</td><td>Continua com adicional mínimo de 50% (Constituição, art. 7º, XVI).</td></tr>
+          <tr><td>Domingo de folga no comércio</td><td class="pill-no">Não</td><td>Continua 1 domingo a cada 3 semanas (Lei 11.603/2007).</td></tr>
+          <tr><td>Escalas 12x36 e outras</td><td class="pill-q">A confirmar</td><td>Depende do texto final e de como a emenda se aplica a regimes com jornada diferente. Veja a seção 5.</td></tr>
+          <tr><td>Microempresas, MEI e EPP</td><td class="pill-q">A confirmar</td><td>Lei complementar específica ainda não foi publicada, segundo reportagens.</td></tr>
+          <tr><td>Terceirizados da administração pública</td><td class="pill-q">A confirmar</td><td>Reportagens citam regra de transição diferente, com prazo de 12 meses.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 4. Base de conhecimento ===== -->
+  <section class="card" id="base">
+    <h2>4. Base de conhecimento</h2>
+    <p class="small">Resumo dos pontos principais, com o nível de confiança de cada um. O detalhe fica em <a href="docs/base-de-conhecimento.md">docs/base-de-conhecimento.md</a>.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Tema</th><th>Informação</th><th>Confiança</th></tr></thead>
+        <tbody>
+          <tr><td>Art. 2º</td><td>Redução de jornada e aumento de descanso valem para contratos em vigor, sem redução salarial.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 6º, I</td><td>Até 42 h semanais, dois meses após a publicação.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 6º, II</td><td>Até 40 h semanais, um ano depois da etapa anterior.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 7º, XV</td><td>Dois dias de descanso semanal, um deles preferencialmente no domingo. Entra em vigor dois meses após a publicação (art. 10).</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 7º, § 2º</td><td>Em caráter excepcional, convenção ou acordo coletivo pode criar regime compensatório com dois dias de descanso na média do mês.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 8º</td><td>Empregado com diploma de nível superior e remuneração de pelo menos 2,5 vezes o teto do INSS fica fora das regras de duração e controle de jornada. O valor de R$ 21.188,87 muda quando o teto mudar.</td><td class="pill-yes">Verificado (texto)</td></tr>
+          <tr><td>Art. 5º</td><td>Lei complementar pode criar regras transitórias para ME, MEI e EPP.</td><td class="pill-q">Pendente: lei não publicada</td></tr>
+          <tr><td>Art. 7º, § 3º</td><td>Lei pode disciplinar regimes diferenciados de jornada.</td><td class="pill-q">Pendente: depende de lei</td></tr>
+          <tr><td>Interjornada, intervalo e hora extra</td><td>Continuam: 11 h entre jornadas, intervalo previsto na CLT e adicional de 50% na hora extra.</td><td class="pill-q">Conferir na CLT</td></tr>
+          <tr><td>Texto oficial</td><td>Os dados acima vêm de resumo do texto, não do Planalto.</td><td class="pill-q">Pendente: conferir no Planalto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 5. Calculadora ===== -->
+  <section class="card" id="calculadora">
+    <h2>5. Calculadora de jornada</h2>
+    <p class="small">Estimativas para comparar escalas. Não consideram horas extras, banco de horas, feriados, faltas, férias nem regras da convenção coletiva.</p>
+
+    <div class="tabs no-print" role="tablist" aria-label="Período">
+      <button type="button" role="tab" id="tab-week" aria-selected="true" data-tab="week">Semanal</button>
+      <button type="button" role="tab" id="tab-month" aria-selected="false" data-tab="month">Mensal</button>
+    </div>
+
     <div class="grid">
       <div>
-        <label for="calc-hours">Horas trabalhadas por dia</label>
-        <input type="number" id="calc-hours" min="0" max="24" step="0.5" value="8.8">
+        <label for="calc-scale">Tipo de escala</label>
+        <select id="calc-scale">
+          <option value="5x2">5x2: 5 dias e 2 de folga</option>
+          <option value="6x1">6x1: 6 dias e 1 de folga</option>
+          <option value="12x36">12x36: 12 h de trabalho e 36 h de descanso</option>
+          <option value="custom">Personalizada</option>
+        </select>
       </div>
       <div>
-        <label for="calc-days">Dias trabalhados por semana</label>
-        <input type="number" id="calc-days" min="1" max="7" step="1" value="5">
+        <label for="calc-hours">Horas por dia de trabalho</label>
+        <input type="number" id="calc-hours" min="0" max="24" step="0.01" value="8.8">
+      </div>
+      <div>
+        <label for="calc-days">Dias de trabalho por semana</label>
+        <input type="number" id="calc-days" min="0.5" max="7" step="0.5" value="5">
+      </div>
+      <div id="month-field" class="hidden">
+        <label for="calc-month">Mês</label>
+        <input type="month" id="calc-month">
       </div>
       <div>
         <button type="button" class="action" id="calc-btn">Calcular</button>
       </div>
     </div>
-    <div class="result" id="calc-result" aria-live="polite">Preencha os campos e clique em Calcular.</div>
+    <p class="small" style="margin-top:8px">Na 12x36, a média é de 3,5 dias de trabalho por semana (12 h x 3,5 = 42 h).</p>
+
+    <div class="result" id="calc-result" aria-live="polite"></div>
   </section>
 
-  <!-- ===== Só colaborador ===== -->
-  <section data-only="employee">
-    <h2>Perguntas frequentes do colaborador</h2>
+  <!-- ===== 5. Comparação de escalas ===== -->
+  <section class="card" id="comparacao">
+    <h2>6. Comparação entre escalas</h2>
+    <p class="small">Quantas horas por dia cabem em cada limite semanal, para cada tipo de escala.</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Escala</th><th>Hoje (44 h)</th><th>1ª etapa (42 h)</th><th>2ª etapa (40 h)</th><th>Folgas por semana</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>5x2</strong></td><td>8,8 h/dia</td><td>8,4 h/dia</td><td>8,0 h/dia</td><td>2</td></tr>
+          <tr><td><strong>6x1</strong></td><td>7,3 h/dia</td><td>7,0 h/dia</td><td>6,7 h/dia</td><td>1</td></tr>
+          <tr><td><strong>12x36</strong></td><td>12 h/dia, média de 42 h/semana</td><td>Média de 42 h, dentro do limite</td><td>Média de 42 h, acima do limite de 40 h</td><td>Média de 3,5 dias</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice" style="margin-top:12px">
+      <strong>12x36 a confirmar:</strong> a média de 42 h fica acima do limite de 40 h da 2ª etapa. Como a emenda trata esse regime depende do texto oficial e de regulamentação. Não concluímos nada ainda.
+    </div>
+  </section>
+
+  <!-- ===== 6. Riscos ===== -->
+  <section class="card" id="riscos">
+    <h2>7. Riscos para estudar</h2>
+    <p class="small">Lista de pontos a investigar. Ainda não há dados verificados sobre o impacto de cada um.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Risco</th><th>Quem é mais afetado</th><th>O que precisamos estudar</th></tr></thead>
+        <tbody>
+          <tr><td>Custo de pessoal</td><td>Pequenos negócios com margem apertada</td><td>Quanto custa manter a cobertura com 2 folgas e menos horas.</td></tr>
+          <tr><td>Cobertura de serviços contínuos</td><td>Saúde, vigilância, transporte e segurança</td><td>Como manter plantões 24 h com 40 ou 42 h semanais.</td></tr>
+          <tr><td>Informalidade ou contratação como PJ</td><td>Trabalhadores e fiscalização</td><td>Se a mudança pode empurrar parte das pessoas para fora da CLT.</td></tr>
+          <tr><td>Hora extra e banco de horas</td><td>Quem trabalha além do combinado</td><td>Se a pressão por horas extras aumenta, e como o controle de ponto muda.</td></tr>
+          <tr><td>Regimes diferentes por setor</td><td>Trabalhadores de setores com acordo próprio</td><td>Se acordos e convenções criam regras muito diferentes entre categorias.</td></tr>
+          <tr><td>Diferença entre empresas grandes e pequenas</td><td>MEI, ME e EPP</td><td>Quando sai a lei complementar e quais regras ela traz.</td></tr>
+          <tr><td>Insegurança enquanto não há regulamentação</td><td>Todos</td><td>Quais pontos ficam para a CLT e para a regulamentação futura.</td></tr>
+          <tr><td>Domingos e feriados</td><td>Comércio e serviços</td><td>Como o rodízio de domingos se encaixa na nova jornada.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 7. Perguntas: trabalhador ===== -->
+  <section class="card" data-only="employee">
+    <h2>8. Perguntas de quem trabalha</h2>
     <details>
-      <summary>Meu salário vai cair?</summary>
-      <p>Reportagens informam que a redução de jornada não deve reduzir o salário. Veja o texto oficial da emenda antes de tomar decisões.</p>
+      <summary>Meu salário vai diminuir?</summary>
+      <p>Reportagens dizem que não. Mesmo com menos horas, o salário deve ser o mesmo. Confirme no texto oficial e com seu sindicato.</p>
     </details>
     <details>
-      <summary>Quando passo a ter 2 folgas por semana?</summary>
-      <p>A 1ª etapa começa cerca de 60 dias após a promulgação (15 ou 16/12/2026, conforme a fonte). A partir dela, a escala passa a ser 5x2.</p>
+      <summary>Como vou saber qual é a minha folga?</summary>
+      <p>Depende da empresa e da convenção coletiva da sua categoria. Peça por escrito a escala e guarde o registro.</p>
     </details>
     <details>
-      <summary>Posso ser escalado no domingo?</summary>
-      <p>Em regra, o domingo de folga é garantido. No comércio, a regra de 1 domingo de folga a cada 3 semanas continua valendo, salvo acordo coletivo. Confirme com seu sindicato.</p>
-    </details>
-    <details>
-      <summary>Minha empresa pode trocar a regra por acordo?</summary>
-      <p>Reportagens citam que um acordo ou convenção coletiva pode adotar outro regime, desde que haja compensação dentro do mesmo mês. Verifique a convenção da sua categoria.</p>
+      <summary>E se eu fizer hora extra?</summary>
+      <p>Hora extra continua sendo paga com adicional mínimo de 50%. Acompanhe seu registro de ponto.</p>
     </details>
     <details>
       <summary>Onde denunciar descumprimento?</summary>
@@ -262,87 +319,184 @@
     </details>
   </section>
 
-  <!-- ===== Só empresário ===== -->
-  <section data-only="employer" class="hidden">
-    <h2>Gerador de rodízio 5x2</h2>
-    <p class="small">
-      Rascunho para planejamento. Cada pessoa tem 2 folgas seguidas por semana, e o padrão gira a cada semana.
-      Confira a escala antes de publicar: ela não considera férias, atestados, feriados nem regras da sua convenção.
-    </p>
-    <div class="grid">
-      <div>
-        <label for="gen-people">Quantidade de pessoas</label>
-        <input type="number" id="gen-people" min="1" max="60" value="7">
-      </div>
-      <div>
-        <label for="gen-min">Mínimo por dia</label>
-        <input type="number" id="gen-min" min="1" max="60" value="4">
-      </div>
-      <div>
-        <label for="gen-month">Mês</label>
-        <input type="month" id="gen-month">
-      </div>
-      <div>
-        <button type="button" class="action" id="gen-btn">Gerar escala</button>
-      </div>
-    </div>
-    <div class="result" id="gen-result" style="margin-top:14px"></div>
-    <div class="no-print" style="margin-top:10px">
-      <button type="button" class="ghost" id="print-btn">Imprimir</button>
-    </div>
+  <!-- ===== 7. Perguntas: empresário ===== -->
+  <section class="card hidden" data-only="employer">
+    <h2>8. Perguntas de quem tem empresa</h2>
+    <details>
+      <summary>Preciso mudar a escala agora?</summary>
+      <p>Não. A mudança começa cerca de 60 dias após a promulgação. Até lá, a regra atual vale.</p>
+    </details>
+    <details>
+      <summary>Preciso reduzir o salário?</summary>
+      <p>Reportagens dizem que não. A redução é de horas, não de dinheiro. Confirme com seu contador.</p>
+    </details>
+    <details>
+      <summary>Minha empresa é pequena. Tem regra diferente?</summary>
+      <p>Uma lei complementar para MEI, ME e EPP ainda não foi publicada. Acompanhe antes de decidir.</p>
+    </details>
+    <details>
+      <summary>Como calcular se a cobertura vai dar certo?</summary>
+      <p>Use a calculadora mensal acima para ver horas por pessoa. Depois, some as horas de todas as pessoas necessárias em cada dia para manter a cobertura.</p>
+    </details>
   </section>
 
-  <section data-only="employer" class="hidden">
-    <h2>Checklist de adequação</h2>
-    <p class="small">Salvo só neste navegador.</p>
+  <!-- ===== 8. Ações: empresário ===== -->
+  <section class="card hidden" data-only="employer">
+    <h2>9. Por onde começar (empresário)</h2>
     <div id="checklist"></div>
+    <p class="small">Marque o que já fez. Fica salvo só neste navegador.</p>
   </section>
 
-  <section data-only="employer" class="hidden">
-    <h2>Perguntas frequentes do empresário</h2>
-    <details>
-      <summary>Preciso mudar a escala já em outubro?</summary>
-      <p>Não. A emenda começa a valer 60 dias após a promulgação. Até lá, valem as regras atuais.</p>
-    </details>
-    <details>
-      <summary>A jornada cai para 42 h e depois para 40 h. Preciso reduzir o salário?</summary>
-      <p>Reportagens informam que não há redução salarial. Confirme no texto oficial e com seu contador.</p>
-    </details>
-    <details>
-      <summary>Microempresas e empresas de pequeno porte têm regra diferente?</summary>
-      <p>Reportagens mencionam uma lei complementar para MEI, ME e EPP que ainda não foi publicada. Acompanhe antes de decidir.</p>
-    </details>
-  </section>
-
-  <section class="warn" style="margin-bottom:16px">
-    <strong>Pontos a confirmar</strong>
-    <ul style="margin:8px 0 0 18px; padding:0">
-      <li>Data exata de início: 15/12/2026 ou 16/12/2026 (fontes divergem).</li>
-      <li>Texto oficial da emenda: ainda não foi possível conferir no Planalto.</li>
-      <li>A CLT ainda não foi atualizada. Quando for, esta página precisa ser revisada.</li>
-      <li>Lei complementar para MEI, ME e EPP: ainda não publicada, segundo as reportagens.</li>
-      <li>Convenções coletivas específicas de cada categoria não estão incluídas.</li>
+  <!-- ===== Kit (empresário) ===== -->
+  <section class="card hidden" data-only="employer" id="kit-cta">
+    <h2>Kit Escala 5x2 para empresas</h2>
+    <p>Ferramenta completa para montar a escala do mês, sem precisar começar do zero:</p>
+    <ul>
+      <li>Calculadora de quadro de pessoal com 44 h, 42 h e 40 h, com custo mensal estimado.</li>
+      <li>Gerador de rodízio com 2 folgas por semana, cobertura mínima por dia e regra de domingos do comércio.</li>
+      <li>Conferência de jornada semanal, jornada diária e intervalo de 11 h entre jornadas.</li>
+      <li>Planilha para Excel ou Google Planilhas e versão para imprimir.</li>
+      <li>Atualizações quando a regra mudar, até a etapa de 40 h.</li>
     </ul>
+    <p><a class="action" id="kit-link" href="#" style="display:inline-block; text-decoration:none">Quero o kit por R$ 19,90</a></p>
+    <p class="small">Funciona no navegador, sem instalar nada. Você tem 7 dias para desistir da compra.</p>
   </section>
 
-  <section class="sources">
+  <!-- ===== Captação de leads ===== -->
+  <section class="card" id="avisos">
+    <h2>Receba um aviso quando a regra mudar</h2>
+    <p class="small">Ainda faltam o texto oficial conferido, a lei para micro e pequenas empresas e a regulamentação por setor. Avisamos quando cada uma sair.</p>
+    <form id="lead-form" novalidate>
+      <div class="grid">
+        <div>
+          <label for="lead-name">Nome</label>
+          <input type="text" id="lead-name" name="nome" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="lead-email">E-mail</label>
+          <input type="email" id="lead-email" name="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="lead-phone">WhatsApp (opcional)</label>
+          <input type="tel" id="lead-phone" name="whatsapp" autocomplete="tel" placeholder="(48) 99999-9999">
+        </div>
+        <div>
+          <label for="lead-role">Você é</label>
+          <select id="lead-role" name="perfil" required>
+            <option value="">Escolha</option>
+            <option>Trabalhador</option>
+            <option>Dono ou sócio de empresa</option>
+            <option>RH ou gestão de pessoas</option>
+            <option>Contador</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-company">Empresa</label>
+          <input type="text" id="lead-company" name="empresa" autocomplete="organization">
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-size">Colaboradores</label>
+          <select id="lead-size" name="colaboradores">
+            <option value="">Escolha</option>
+            <option>Até 29</option>
+            <option>30 a 100</option>
+            <option>101 a 300</option>
+            <option>Mais de 300</option>
+          </select>
+        </div>
+        <div data-only="employer" class="hidden">
+          <label for="lead-sector">Setor</label>
+          <select id="lead-sector" name="setor">
+            <option value="">Escolha</option>
+            <option>Comércio</option>
+            <option>Serviços</option>
+            <option>Indústria</option>
+            <option>Saúde</option>
+            <option>Bares e restaurantes</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <label class="check" for="lead-consent">
+        <input type="checkbox" id="lead-consent" name="consentimento_avisos" value="sim" required>
+        <span>Quero receber avisos sobre mudanças na escala 5x2 e concordo com a <a href="politica-de-privacidade.html">Política de Privacidade</a>.</span>
+      </label>
+      <label class="check" for="lead-marketing">
+        <input type="checkbox" id="lead-marketing" name="consentimento_peoplegt" value="sim">
+        <span>Também aceito receber conteúdos e ofertas da PeopleGT (opcional).</span>
+      </label>
+      <div style="margin-top:10px"><button type="submit" class="action">Quero receber os avisos</button></div>
+      <p id="lead-status" class="small" style="margin-top:10px" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- ===== Glossário ===== -->
+  <section class="card" id="glossario">
+    <h2>Palavras difíceis</h2>
+    <dl class="gloss">
+      <dt>Jornada</dt><dd>Horas que a pessoa trabalha em um dia ou em uma semana.</dd>
+      <dt>DSR (descanso semanal remunerado)</dt><dd>Folga semanal paga, normalmente no domingo.</dd>
+      <dt>Interjornada</dt><dd>Intervalo de descanso entre o fim de uma jornada e o início da próxima.</dd>
+      <dt>Convenção coletiva</dt><dd>Acordo entre sindicatos de trabalhadores e de empresas de uma mesma área.</dd>
+      <dt>Banco de horas</dt><dd>Sistema em que as horas extras viram folgas em vez de pagamento.</dd>
+      <dt>Emenda constitucional</dt><dd>Mudança na Constituição, a lei mais importante do país.</dd>
+    </dl>
+  </section>
+
+  <section class="notice" style="margin-bottom:16px">
+    <strong>Atenção:</strong> esta página é uma consulta informativa. Ela não substitui um advogado, um contador ou o sindicato da sua categoria.
+  </section>
+
+  <!-- ===== Fontes ===== -->
+  <section class="card" id="fontes">
     <h2>Fontes</h2>
     <ul>
-      <li><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/congresso-promulga-emenda-do-fim-da-6x1-escala-5x2-comeca-em-60-dias">Agência Brasil: Congresso promulga emenda do fim da 6x1; escala 5x2 começa em 60 dias</a></li>
-      <li><a href="https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/">Planalto: emendas constitucionais (índice)</a></li>
-      <li><a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm">Planalto: Consolidação das Leis do Trabalho (CLT)</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/congresso-promulga-emenda-do-fim-da-6x1-escala-5x2-comeca-em-60-dias">Agência Brasil: Congresso promulga emenda do fim da 6x1</a></li>
+      <li><a href="https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/">Planalto: emendas da Constituição</a></li>
+      <li><a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm">Planalto: CLT</a></li>
       <li><a href="https://planalto.gov.br/ccivil_03/_Ato2007-2010/2007/Lei/L11603.htm">Planalto: Lei 11.603/2007 (comércio)</a></li>
     </ul>
-    <p class="small">Esta página é uma consulta informativa e não substitui orientação jurídica ou contábil.</p>
+    <p class="small">Dados de reportagens ainda precisam ser conferidos no texto oficial da emenda.</p>
   </section>
+
+  <footer class="small" style="padding:8px 0 24px">
+    Realização: <a href="https://peoplegt.com.br/?utm_source=escala5x2&amp;utm_medium=site&amp;utm_campaign=escala5x2">PeopleGT</a>
+    · <a href="politica-de-privacidade.html">Política de Privacidade</a>
+    · <a href="leigo.html">Versão simples</a>
+  </footer>
 
 </main>
 
 <script>
 (function () {
+  // ----- configuração (preencher antes de publicar) -----
+  // LEAD_ENDPOINT: URL que recebe o formulário e cria o lead no Pipedrive
+  // (webhook do Make ou Zapier, ou um endpoint da PeopleGT). Nunca coloque o token da API do Pipedrive aqui.
+  var LEAD_ENDPOINT = "";
+  // HOTMART_URL: link do checkout do kit na Hotmart. Vazio esconde a chamada do kit.
+  var HOTMART_URL = "";
+
+  var kitCta = document.getElementById("kit-cta");
+  if (!HOTMART_URL) {
+    kitCta.remove();
+  } else {
+    document.getElementById("kit-link").href = HOTMART_URL;
+  }
+
   var MODE_KEY = "escala5x2-mode";
   var CHECK_KEY = "escala5x2-checklist";
-  var TARGET = new Date(2026, 11, 16, 0, 0, 0); // 16/12/2026 (fontes divergem entre 15 e 16)
+  var TARGET = new Date(2026, 11, 16);
+  var LIMITS = [
+    { label: "Hoje (44 h)", weekly: 44 },
+    { label: "1ª etapa (42 h)", weekly: 42 },
+    { label: "2ª etapa (40 h)", weekly: 40 }
+  ];
+  var PRESETS = {
+    "5x2": { hours: 8.8, days: 5 },
+    "6x1": { hours: 7.33, days: 6 },
+    "12x36": { hours: 12, days: 3.5 }
+  };
 
   function store(key, value) {
     try { localStorage.setItem(key, value); } catch (e) { /* navegador bloqueou o armazenamento */ }
@@ -350,17 +504,21 @@
   function read(key) {
     try { return localStorage.getItem(key); } catch (e) { return null; }
   }
+  function fmt(n) {
+    return Number(n).toLocaleString("pt-BR", { maximumFractionDigits: 1, minimumFractionDigits: 0 });
+  }
 
   // ----- chave Colaborador / Empresário -----
   function setMode(mode) {
-    document.body.setAttribute("data-mode", mode === "employer" ? "employer" : "employee");
+    var isEmployer = mode === "employer";
+    document.body.setAttribute("data-mode", isEmployer ? "employer" : "employee");
     document.querySelectorAll("[data-set-mode]").forEach(function (btn) {
       btn.setAttribute("aria-pressed", String(btn.getAttribute("data-set-mode") === mode));
     });
     document.querySelectorAll("[data-only]").forEach(function (el) {
-      el.classList.toggle("hidden", el.getAttribute("data-only") !== mode);
+      el.classList.toggle("hidden", el.getAttribute("data-only") !== (isEmployer ? "employer" : "employee"));
     });
-    store(MODE_KEY, mode);
+    store(MODE_KEY, isEmployer ? "employer" : "employee");
   }
   document.querySelectorAll("[data-set-mode]").forEach(function (btn) {
     btn.addEventListener("click", function () { setMode(btn.getAttribute("data-set-mode")); });
@@ -369,142 +527,121 @@
 
   // ----- contagem regressiva -----
   function tick() {
-    var diff = TARGET - new Date();
     var el = document.getElementById("countdown");
-    if (diff <= 0) { el.textContent = "Início previsto: já chegou (confira a data oficial)"; return; }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor(diff / 3600000) % 24;
-    el.textContent = d + " dias e " + h + " h";
+    var diff = TARGET - new Date();
+    if (diff <= 0) { el.textContent = "a 1ª etapa já chegou; confira a data oficial"; return; }
+    var days = Math.floor(diff / 86400000);
+    el.textContent = days + (days === 1 ? " dia" : " dias");
   }
   tick();
   setInterval(tick, 60000);
 
-  // ----- calculadora de jornada -----
-  document.getElementById("calc-btn").addEventListener("click", function () {
-    var h = parseFloat(document.getElementById("calc-hours").value);
-    var d = parseInt(document.getElementById("calc-days").value, 10);
-    var out = document.getElementById("calc-result");
-    if (isNaN(h) || isNaN(d) || d < 1 || d > 7 || h < 0) {
-      out.innerHTML = '<span class="bad">Informe valores válidos.</span>';
-      return;
-    }
-    var weekly = h * d;
-    var limits = [
-      { label: "Hoje (44 h)", value: 44 },
-      { label: "1ª etapa (42 h)", value: 42 },
-      { label: "2ª etapa (40 h)", value: 40 }
-    ];
-    var lines = limits.map(function (l) {
-      var ok = weekly <= l.value;
-      return '<div class="' + (ok ? "ok" : "bad") + '">' + l.label + ": " +
-        (ok ? "dentro do limite" : "passa do limite em " + (weekly - l.value).toFixed(1) + " h") + "</div>";
+  // ----- calculadora -----
+  var period = "week";
+  var scaleSel = document.getElementById("calc-scale");
+  var hoursIn = document.getElementById("calc-hours");
+  var daysIn = document.getElementById("calc-days");
+  var monthIn = document.getElementById("calc-month");
+  var out = document.getElementById("calc-result");
+
+  var now = new Date();
+  monthIn.value = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
+
+  function applyPreset() {
+    var p = PRESETS[scaleSel.value];
+    if (!p) return;
+    hoursIn.value = p.hours;
+    daysIn.value = p.days;
+  }
+  scaleSel.addEventListener("change", applyPreset);
+
+  document.querySelectorAll("[data-tab]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      period = btn.getAttribute("data-tab");
+      document.querySelectorAll("[data-tab]").forEach(function (b) {
+        b.setAttribute("aria-selected", String(b === btn));
+      });
+      document.getElementById("month-field").classList.toggle("hidden", period !== "month");
+      calculate();
     });
-    var folgas = 7 - d;
-    out.innerHTML =
-      "<div>Total semanal: <strong>" + weekly.toFixed(1) + " h</strong>, com " + folgas + " dia(s) de folga.</div>" +
-      '<div style="margin-top:8px">' + lines.join("") + "</div>" +
-      '<div class="small" style="margin-top:8px">Não considera horas extras, banco de horas nem regras da convenção coletiva.</div>';
   });
 
-  // ----- gerador de rodízio (empresário) -----
-  var DAYS = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
+  function verdict(value, limit) {
+    var diff = value - limit;
+    return diff <= 0
+      ? '<span class="ok">dentro do limite</span>'
+      : '<span class="bad">passa do limite em ' + fmt(diff) + " h</span>";
   }
-  function generate() {
-    var people = parseInt(document.getElementById("gen-people").value, 10);
-    var min = parseInt(document.getElementById("gen-min").value, 10);
-    var monthVal = document.getElementById("gen-month").value;
-    var out = document.getElementById("gen-result");
-    if (!monthVal) { out.innerHTML = '<span class="bad">Escolha o mês.</span>'; return; }
-    if (isNaN(people) || people < 1 || isNaN(min) || min < 0) {
-      out.innerHTML = '<span class="bad">Informe quantidade e mínimo válidos.</span>';
+
+  function calculate() {
+    var hours = parseFloat(hoursIn.value);
+    var days = parseFloat(daysIn.value);
+    if (isNaN(hours) || isNaN(days) || hours < 0 || days <= 0 || days > 7) {
+      out.innerHTML = '<span class="bad">Informe horas (0 a 24) e dias por semana (0,5 a 7).</span>';
       return;
     }
-    var parts = monthVal.split("-");
-    var y = parseInt(parts[0], 10), m = parseInt(parts[1], 10) - 1;
-    var last = new Date(y, m + 1, 0).getDate();
+    var weekly = hours * days;
+    var offPerWeek = 7 - days;
 
-    // Cada pessoa tem um par de folgas consecutivas (dia inicial = (i + semana) % 7).
-    // A cada semana o padrão avança, para que o fim de semana rode entre as pessoas.
-    function isOff(i, date) {
-      var week = Math.floor((date.getDate() - 1) / 7);
-      var start = (i + week) % 7;
-      var dow = date.getDay();
-      return dow === start || dow === (start + 1) % 7;
+    if (period === "week") {
+      var rows = LIMITS.map(function (l) {
+        return "<tr><td>" + l.label + "</td><td>" + fmt(l.weekly) + " h</td><td>" + verdict(weekly, l.weekly) + "</td></tr>";
+      }).join("");
+      out.innerHTML =
+        '<div class="kpis">' +
+          '<div class="kpi">Por dia<b>' + fmt(hours) + " h</b></div>" +
+          '<div class="kpi">Por semana<b>' + fmt(weekly) + " h</b></div>" +
+          '<div class="kpi">Folgas por semana<b>' + fmt(offPerWeek) + "</b></div>" +
+        "</div>" +
+        '<div class="scroll"><table><thead><tr><th>Limite</th><th>Horas</th><th>Situação</th></tr></thead><tbody>' +
+        rows + "</tbody></table></div>";
+      return;
     }
 
-    var head = "<tr><th>Pessoa</th>";
-    var rows = [];
-    for (var d = 1; d <= last; d++) {
-      var dt = new Date(y, m, d);
-      head += "<th>" + d + "<br>" + DAYS[dt.getDay()] + "</th>";
-    }
-    head += "<th>Folgas</th></tr>";
-
-    var coverage = new Array(last).fill(0);
-    for (var i = 0; i < people; i++) {
-      var row = "<tr><th>Pessoa " + (i + 1) + "</th>";
-      var offCount = 0;
-      for (var day = 1; day <= last; day++) {
-        var date = new Date(y, m, day);
-        var off = isOff(i, date);
-        if (off) { offCount++; } else { coverage[day - 1]++; }
-        row += '<td class="' + (off ? "off" : "on") + '">' + (off ? "F" : "T") + "</td>";
-      }
-      row += "<td>" + offCount + "</td></tr>";
-      rows.push(row);
-    }
-
-    var footer = "<tr><th>Trabalhando</th>";
-    var problems = [];
-    coverage.forEach(function (n, idx) {
-      var bad = n < min;
-      if (bad) problems.push(idx + 1);
-      footer += '<td class="' + (bad ? "bad-cell" : "") + '">' + n + "</td>";
-    });
-    footer += "<td></td></tr>";
-
-    var status = problems.length
-      ? '<div class="bad">Cobertura abaixo do mínimo em ' + problems.length + " dia(s): " + escapeHtml(problems.join(", ")) + ".</div>"
-      : '<div class="ok">Cobertura mínima atendida em todos os dias.</div>';
-
+    var parts = monthIn.value.split("-");
+    if (parts.length !== 2) { out.innerHTML = '<span class="bad">Escolha o mês.</span>'; return; }
+    var y = parseInt(parts[0], 10);
+    var m = parseInt(parts[1], 10);
+    var dim = new Date(y, m, 0).getDate();
+    var weeksFactor = dim / 7;
+    var monthly = weekly * weeksFactor;
+    var workDays = dim * days / 7;
+    var offDays = dim - workDays;
+    var mRows = LIMITS.map(function (l) {
+      var lim = l.weekly * weeksFactor;
+      return "<tr><td>" + l.label + "</td><td>" + fmt(lim) + " h</td><td>" + verdict(monthly, lim) + "</td></tr>";
+    }).join("");
     out.innerHTML =
-      status +
-      '<div class="scroll" style="margin-top:10px"><table class="cover"><thead>' + head + "</thead><tbody>" +
-      rows.join("") + footer + "</tbody></table></div>" +
-      '<div class="small" style="margin-top:8px">T = trabalha, F = folga.</div>';
+      '<div class="kpis">' +
+        '<div class="kpi">Horas no mês<b>' + fmt(monthly) + " h</b></div>" +
+        '<div class="kpi">Dias de trabalho<b>' + fmt(workDays) + "</b></div>" +
+        '<div class="kpi">Dias de folga<b>' + fmt(offDays) + "</b></div>" +
+      "</div>" +
+      '<div class="scroll"><table><thead><tr><th>Limite no mês</th><th>Horas</th><th>Situação</th></tr></thead><tbody>' +
+      mRows + "</tbody></table></div>" +
+      '<p class="small" style="margin-top:8px">Mês com ' + dim + " dias. Valores médios, não o calendário exato de folgas.</p>";
   }
-  document.getElementById("gen-btn").addEventListener("click", generate);
-  document.getElementById("print-btn").addEventListener("click", function () { window.print(); });
+  document.getElementById("calc-btn").addEventListener("click", calculate);
+  calculate();
 
-  // default: mês atual
-  var now = new Date();
-  document.getElementById("gen-month").value =
-    now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
-
-  // ----- checklist de adequação (empresário) -----
+  // ----- checklist (empresário) -----
   var ITEMS = [
-    "Mapear todos os colaboradores e as escalas atuais",
-    "Definir a cobertura mínima de cada dia e turno",
-    "Revisar convenção coletiva da categoria",
-    "Calcular impacto da jornada de 42 h e de 40 h",
-    "Planejar o rodízio de domingos (regra do comércio, se for o caso)",
-    "Conferir intervalo de 11 h entre jornadas",
-    "Atualizar registro de ponto e sistema de folgas",
-    "Comunicar a equipe com antecedência"
+    "Anotei quantas horas cada pessoa trabalha hoje",
+    "Vi as contas com 42 h e com 40 h na calculadora",
+    "Estimei a cobertura mínima de cada dia",
+    "Conversei com a equipe",
+    "Li a convenção coletiva do meu setor",
+    "Falei com um contador",
+    "Revisei os riscos da seção 7 que se aplicam ao meu negócio"
   ];
-  var checklist = document.getElementById("checklist");
+  var list = document.getElementById("checklist");
   var saved = {};
   try { saved = JSON.parse(read(CHECK_KEY) || "{}"); } catch (e) { saved = {}; }
   ITEMS.forEach(function (text, idx) {
     var id = "chk-" + idx;
-    var wrap = document.createElement("label");
-    wrap.className = "check";
-    wrap.setAttribute("for", id);
-    wrap.style.fontWeight = "400";
+    var label = document.createElement("label");
+    label.className = "check";
+    label.setAttribute("for", id);
     var box = document.createElement("input");
     box.type = "checkbox";
     box.id = id;
@@ -515,9 +652,51 @@
     });
     var span = document.createElement("span");
     span.textContent = text;
-    wrap.appendChild(box);
-    wrap.appendChild(span);
-    checklist.appendChild(wrap);
+    label.appendChild(box);
+    label.appendChild(span);
+    list.appendChild(label);
+  });
+
+  // ----- formulário de leads -----
+  var form = document.getElementById("lead-form");
+  var status = document.getElementById("lead-status");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("lead-name").value.trim();
+    var email = document.getElementById("lead-email").value.trim();
+    var role = document.getElementById("lead-role").value;
+    var consent = document.getElementById("lead-consent").checked;
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !role || !consent) {
+      status.innerHTML = '<span class="bad">Preencha nome, e-mail válido e perfil, e marque a autorização para receber os avisos.</span>';
+      return;
+    }
+    if (!LEAD_ENDPOINT) {
+      status.innerHTML = '<span class="bad">O cadastro ainda não está disponível. Tente novamente em breve.</span>';
+      return;
+    }
+
+    var data = new URLSearchParams(new FormData(form));
+    data.set("origem", "site-escala-5x2");
+    data.set("modo_pagina", document.body.getAttribute("data-mode") === "employer" ? "empresario" : "trabalhador");
+    data.set("data_consentimento", new Date().toISOString());
+    var params = new URLSearchParams(window.location.search);
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (params.get(k)) data.set(k, params.get(k));
+    });
+
+    var button = form.querySelector("button[type=submit]");
+    button.disabled = true;
+    status.textContent = "Enviando...";
+    // no-cors: o webhook não precisa liberar CORS, mas a resposta não pode ser lida.
+    fetch(LEAD_ENDPOINT, { method: "POST", mode: "no-cors", body: data })
+      .then(function () {
+        form.reset();
+        status.innerHTML = '<span class="ok">Pronto! Você vai receber um aviso quando a regra mudar.</span>';
+      })
+      .catch(function () {
+        status.innerHTML = '<span class="bad">Não foi possível enviar agora. Verifique sua conexão e tente de novo.</span>';
+      })
+      .then(function () { button.disabled = false; });
   });
 })();
 </script>
