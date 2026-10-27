@@ -6,6 +6,7 @@ Consulta gratuita sobre a escala 5x2 (5 dias de trabalho e 2 de folga por semana
 
 - **`index.html`**: página completa para trabalhadores e empresários. Explicação, cronograma, o que muda e o que não muda, base de conhecimento, calculadora semanal e mensal, comparação entre escalas, riscos, formulário de avisos e chamada para o kit pago (só no modo empresário).
 - **`leigo.html`**: versão simples, para quem está começando.
+- **`painel.html`**: painel público da escala para os colaboradores. Lê a escala que vem no link gerado pelo kit (depois do `#`) e não guarda dados. O kit aponta para `https://jeanhkmllo-devs.github.io/Escala-5x2/painel.html`. Se o site for publicado em outro endereço, ajuste `PAINEL_URL` no kit.
 - **`politica-de-privacidade.html`**: modelo de política para o formulário. Tem campos entre colchetes para preencher, e precisa de revisão do jurídico.
 - **`docs/base-de-conhecimento.md`**: fontes, regras artigo por artigo e pendências.
 

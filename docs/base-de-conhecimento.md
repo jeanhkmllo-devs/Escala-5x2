@@ -255,3 +255,52 @@ Anúncio em stories do Instagram, visto em 26/10/2026. Material pago com fichas 
 
 - [`relatorio-tipos-de-escala.md`](relatorio-tipos-de-escala.md): 5x2, 6x1, 4x3, 12x36, 24x48, 24x72, turno de revezamento e tempo parcial em cada etapa da EC 141.
 - [`escala-12x36.md`](escala-12x36.md): art. 59-A, as três formas de contar o intervalo, horas por mês, feriados (Súmula 444 do TST) e trabalho noturno, com fontes e pendências.
+
+## 13. Referência de mercado: Jornada 40h (jornada40h.com.br)
+
+Vista em anúncio da Meta em 27/10/2026. Usada só como referência. Não copiar.
+
+- **O que é:** escala 5x2 pronta para negócios de 2 a 50 funcionários. Custa R$ 47,90 em pagamento único (de R$ 77), com garantia de 7 dias, e é entregue em até 48 h depois de um formulário.
+- **Isca:** diagnóstico gratuito de 3 perguntas. Mostra uma prévia, três saídas e a mais barata. O resultado completo fica bloqueado e pede e-mail.
+- **Painel do gestor:**
+  - login sem senha, por código no e-mail;
+  - mostra horas sem cobertura, custos e alertas com o artigo da lei;
+  - escala por turno, com cartões de cada pessoa que dá para arrastar;
+  - ajuste por IA, com antes e depois;
+  - exporta PDF e planilha.
+- **O que não tem:** publicação da escala para os colaboradores.
+- **Fatos sobre a lei:** batem com a nossa base (75 a 1 no Senado, EC 141 em 16/10/2026, 42 h e 40 h, exceção do diploma superior). A página não cita fontes oficiais.
+
+### Ideias para aproveitar, do nosso jeito
+
+1. **Três saídas com custo:** pagar hora extra, contratar ou reduzir o horário, com a mais barata em destaque. Ressalva: hora extra habitual não é segura (ver seção 9.2). Essa saída deve aparecer como temporária.
+2. **Horas sem cobertura:** número simples que mostra o tamanho do problema.
+3. **Diagnóstico grátis com resultado parcial:** boa isca para a página gratuita. O resultado completo, ou o relatório, fica em troca do contato.
+4. **Exemplo pronto de um negócio fictício,** como uma padaria, para a pessoa entender antes de preencher.
+5. **Edição por arrastar,** em vez de clicar dia a dia.
+
+## 14. Publicação da escala para a equipe
+
+### Versão atual (sem servidor)
+
+- No kit, a tela Escala do mês tem "Publicar para a equipe", que gera um link para `painel.html`.
+- A escala vai **dentro do link**, depois do `#`. O navegador não envia essa parte ao servidor, então nenhum dado fica guardado.
+- O painel valida o conteúdo e mostra os nomes só como texto, sem interpretar código.
+- O colaborador:
+  - escolhe o nome;
+  - vê a próxima folga, os totais do mês e o calendário;
+  - baixa os turnos para o calendário do celular (`.ics`);
+  - pode imprimir.
+- **Limites:**
+  - quem tiver o link vê a escala;
+  - cada mudança gera um link novo;
+  - não há confirmação de leitura.
+
+### Próxima versão (com servidor, por exemplo no Supabase que a PeopleGT já usa)
+
+- Link fixo por equipe, que se atualiza quando o gestor publica.
+- Acesso só para a equipe, com código por e-mail ou WhatsApp.
+- Confirmação de leitura ("ciente") e histórico de versões.
+- Pedido de troca de folga entre colegas, com aprovação do gestor.
+- Aviso automático quando a escala muda.
+- **LGPD:** a empresa é a controladora dos dados dos funcionários e a plataforma é a operadora. Isso exige contrato, prazo de guarda e exclusão.
